@@ -17,6 +17,6 @@ public class AuthCommand implements Command {
                 request.getParameter("login"),
                 request.getParameter("password"));
         User user = userService.auth(userDTO);
-        return PageRoutes.REDIRECT + PageRoutes.USERPAGE + LOGIN + user.getLogin();
+        return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.USERPAGE + LOGIN + user.getLogin();
     }
 }

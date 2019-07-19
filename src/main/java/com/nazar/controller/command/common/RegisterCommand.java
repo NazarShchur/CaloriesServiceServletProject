@@ -27,6 +27,6 @@ public class RegisterCommand implements Command {
         } catch (NotUniqueLoginException e) {
             return JSPRoutes.REGISTRATION + NOT_UNIQUE;
         }
-        return PageRoutes.REDIRECT + PageRoutes.MAIN;
+        return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.MAIN;
     }
 }

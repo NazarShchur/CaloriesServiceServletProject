@@ -2,6 +2,7 @@ package com.nazar.controller.command.routes;
 
 public interface PageRoutes {
     String REDIRECT = "redirect:";
-    String MAIN = "/app/main";
-    String USERPAGE = "/app/userpage";
+    String MAIN = "/main";
+    String USERPAGE = "/userpage";
+    String LOGIN = "/login";
 }

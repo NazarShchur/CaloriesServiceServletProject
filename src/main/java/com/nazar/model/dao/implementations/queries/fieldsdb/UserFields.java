@@ -11,4 +11,5 @@ public interface UserFields {
     String LIFE_STYLE = "life_style";
     String GENDER = "gender";
     String WEIGHT = "weight";
+    String ROLE = "role";
 }

@@ -9,6 +9,7 @@ public class User {
     private double height;
     private double weight;
     private Gender gender;
+    private Role role;
     private LifeStyle lifeStyle;
 
     public int getId() {
@@ -83,6 +84,14 @@ public class User {
         this.lifeStyle = lifeStyle;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -94,9 +103,11 @@ public class User {
                 ", height=" + height +
                 ", weight=" + weight +
                 ", gender=" + gender +
+                ", role=" + role +
                 ", lifeStyle=" + lifeStyle +
                 '}';
     }
+
     public static Builder builder(){
         return new Builder();
     }
@@ -108,6 +119,7 @@ public class User {
         private int dailyCalories = 0;
         private int height = 0;
         private int weight = 0;
+        private Role role = Role.USER;
         private Gender gender = Gender.Man;
         private LifeStyle lifeStyle = LifeStyle.LowActivity;
 
@@ -148,6 +160,11 @@ public class User {
             this.lifeStyle = lifeStyle;
             return this;
         }
+        public Builder role(Role role) {
+            this.role = role;
+            return this;
+        }
+
         public User build(){
             User user = new User();
             user.setId(id);
@@ -159,6 +176,7 @@ public class User {
             user.setHeight(height);
             user.setWeight(weight);
             user.setLifeStyle(lifeStyle);
+            user.setRole(role);
             return user;
         }
     }

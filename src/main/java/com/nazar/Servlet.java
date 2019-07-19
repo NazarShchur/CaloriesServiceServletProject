@@ -2,6 +2,7 @@ package com.nazar;
 
 import com.nazar.controller.command.*;
 import com.nazar.controller.command.common.*;
+import com.nazar.controller.command.routes.PageRoutes;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -49,8 +50,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Command command = commands.getOrDefault(path ,
                 (r)->"main");
         String page = command.execute(request);
-        if(page.contains("redirect")){
-            response.sendRedirect(page.replace("redirect:", ""));
+        if(page.contains(PageRoutes.REDIRECT)){
+            response.sendRedirect(page.replace(PageRoutes.REDIRECT,""));
         }else {
             request.getRequestDispatcher(request.getContextPath() + page).forward(request, response);
         }

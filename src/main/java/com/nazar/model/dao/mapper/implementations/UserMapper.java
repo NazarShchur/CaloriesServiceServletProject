@@ -4,6 +4,7 @@ import com.nazar.model.dao.implementations.queries.fieldsdb.UserFields;
 import com.nazar.model.dao.mapper.Mapper;
 import com.nazar.model.entity.Gender;
 import com.nazar.model.entity.LifeStyle;
+import com.nazar.model.entity.Role;
 import com.nazar.model.entity.User;
 
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class UserMapper implements Mapper<User> {
 //                .gender(Gender.valueOf(resultSet.getString(UserFields.GENDER)))
 //                .height(resultSet.getInt(UserFields.HEIGHT))
 //                .weight(resultSet.getInt(UserFields.WEIGHT))
+//                .role(Role.valueOf(resultSet.getString(UserFields.ROLE)))
 //                .lifeStyle(LifeStyle.valueOf(resultSet.getString(UserFields.LIFE_STYLE)))
                 .build();
     }
