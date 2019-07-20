@@ -5,4 +5,6 @@ public interface PageRoutes {
     String MAIN = "/main";
     String USERPAGE = "/userpage";
     String LOGIN = "/login";
+    String REGISTRATION = "/registration";
+    String ACCESSDENIED = "/accessdenied";
 }

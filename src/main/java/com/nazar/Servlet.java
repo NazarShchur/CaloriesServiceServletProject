@@ -22,6 +22,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new RegistrationCommand());
         commands.put("login",
                 new LoginCommand());
+        commands.put("logout",
+                new LogOutCommand());
         commands.put("register",
                 new RegisterCommand());
         commands.put("main",
@@ -30,6 +32,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new AuthCommand());
         commands.put("userpage",
                 new UserPageCommand());
+        commands.put("accessdenied",
+                new AccessDeniedCommand());
     }
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
@@ -44,15 +48,15 @@ public class Servlet extends javax.servlet.http.HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String path = request.getRequestURI();
-        System.out.println(path);
         path = path.replaceAll(".*/app/" , "");
-        System.out.println(path);
         Command command = commands.getOrDefault(path ,
                 (r)->"main");
         String page = command.execute(request);
         if(page.contains(PageRoutes.REDIRECT)){
+            System.out.println("Redirecting to " + page);
             response.sendRedirect(page.replace(PageRoutes.REDIRECT,""));
         }else {
+            System.out.println("Forwarding to " + page);
             request.getRequestDispatcher(request.getContextPath() + page).forward(request, response);
         }
     }

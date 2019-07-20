@@ -28,7 +28,6 @@ public class JDBCUserDao implements UserDao {
             ResultSet rs = ps.executeQuery();
             System.out.println("Executed " + UserSQL.FINDBYLOGINANDPASSWORD);
             if(rs.next()){
-                System.out.println("rs has next");
                 found = userMapper.getEntity(rs);
             }
         } catch (SQLException e){

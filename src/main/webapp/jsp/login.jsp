@@ -12,7 +12,7 @@
 <form method="post" action="${pageContext.request.contextPath}/app/auth">
     <input type="text" name="login"><br/>
     <input type="password" name="password"><br/>
-    <input type="submit" value="register">
+    <input type="submit" value="login">
 </form>
 </body>
 </html>

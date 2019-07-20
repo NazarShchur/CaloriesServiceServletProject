@@ -22,4 +22,9 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <listener>
+    <listener-class>
+       com.nazar.controller.listener.SessionListener
+    </listener-class>
+</listener>
 </web-app>

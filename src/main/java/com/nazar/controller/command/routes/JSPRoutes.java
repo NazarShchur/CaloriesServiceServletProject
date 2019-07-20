@@ -5,4 +5,5 @@ public interface JSPRoutes {
     String MAIN = "/jsp/main.jsp";
     String REGISTRATION = "/jsp/registration.jsp";
     String USERPAGE = "/jsp/userpage.jsp";
+    String ACCESSDENIED = "/jsp/accessdenied.jsp";
 }

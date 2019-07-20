@@ -2,6 +2,8 @@ package com.nazar.controller.filter;
 
 
 import com.nazar.controller.command.routes.PageRoutes;
+import com.nazar.model.entity.User;
+import com.nazar.utility.AuthUtility;
 import com.nazar.utility.SecurityUtility;
 
 import javax.servlet.*;
@@ -9,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Optional;
+
 
 public class AuthFilter implements Filter {
 
@@ -24,11 +27,31 @@ public class AuthFilter implements Filter {
                          FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        if(SecurityUtility.isPageSecured(req)){
-            resp.sendRedirect(req.getServletPath() + PageRoutes.LOGIN);
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        System.out.println("user got from session " + user);
+        String PATHINFO = Optional.ofNullable(req.getPathInfo()).orElse("");
+        if(AuthUtility.isUserLogged(req)
+                &&(PATHINFO.equals(PageRoutes.LOGIN) || PATHINFO.equals(PageRoutes.REGISTRATION))){
+            System.out.println("Redirecting to " + PageRoutes.USERPAGE);
+            resp.sendRedirect(req.getServletPath() + PageRoutes.USERPAGE);
             return;
         }
-        chain.doFilter(request, response);
+        if (SecurityUtility.isPageSecured(req)){
+            if (user != null) {
+                if (SecurityUtility.hasPermisson(req, user)) {
+                    chain.doFilter(request, response);
+                } else {
+                    System.out.println("Redirecting to " + PageRoutes.ACCESSDENIED);
+                    resp.sendRedirect(req.getServletPath() + PageRoutes.ACCESSDENIED);
+                }
+            } else {
+                System.out.println("Redirecting to " + PageRoutes.LOGIN);
+                resp.sendRedirect(req.getServletPath() + PageRoutes.LOGIN);
+            }
+        } else {
+            chain.doFilter(request, response);
+        }
     }
 
     @Override

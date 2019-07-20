@@ -1,5 +1,9 @@
 package com.nazar.model.entity;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class User {
     private int id;
     private String login;
@@ -9,7 +13,7 @@ public class User {
     private double height;
     private double weight;
     private Gender gender;
-    private Role role;
+    private Set<Role> roles;
     private LifeStyle lifeStyle;
 
     public int getId() {
@@ -84,12 +88,12 @@ public class User {
         this.lifeStyle = lifeStyle;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -103,7 +107,7 @@ public class User {
                 ", height=" + height +
                 ", weight=" + weight +
                 ", gender=" + gender +
-                ", role=" + role +
+                ", roles=" + roles +
                 ", lifeStyle=" + lifeStyle +
                 '}';
     }
@@ -119,7 +123,7 @@ public class User {
         private int dailyCalories = 0;
         private int height = 0;
         private int weight = 0;
-        private Role role = Role.USER;
+        private Set<Role> roles = new HashSet<>();
         private Gender gender = Gender.Man;
         private LifeStyle lifeStyle = LifeStyle.LowActivity;
 
@@ -160,8 +164,8 @@ public class User {
             this.lifeStyle = lifeStyle;
             return this;
         }
-        public Builder role(Role role) {
-            this.role = role;
+        public Builder roles(Set<Role> roles) {
+            this.roles = roles;
             return this;
         }
 
@@ -176,7 +180,8 @@ public class User {
             user.setHeight(height);
             user.setWeight(weight);
             user.setLifeStyle(lifeStyle);
-            user.setRole(role);
+            user.setRoles(roles);
+            roles.add(Role.USER);//todo remove
             return user;
         }
     }
