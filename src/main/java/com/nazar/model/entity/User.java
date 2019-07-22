@@ -1,6 +1,7 @@
 package com.nazar.model.entity;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,11 +11,12 @@ public class User {
     private String password;
     private int age;
     private int dailyCalories;
-    private double height;
-    private double weight;
+    private int height;
+    private int weight;
     private Gender gender;
     private Set<Role> roles;
     private LifeStyle lifeStyle;
+
 
     public int getId() {
         return id;
@@ -56,19 +58,19 @@ public class User {
         this.dailyCalories = dailyCalories;
     }
 
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -113,76 +115,56 @@ public class User {
     }
 
     public static Builder builder(){
-        return new Builder();
+        return new User().new Builder();
     }
-    public static class Builder{
-        private int id = 0;
-        private String login = "default";
-        private String password = "default";
-        private int age = 0;
-        private int dailyCalories = 0;
-        private int height = 0;
-        private int weight = 0;
-        private Set<Role> roles = new HashSet<>();
-        private Gender gender = Gender.Man;
-        private LifeStyle lifeStyle = LifeStyle.LowActivity;
 
+    public class Builder{
 
+        private Builder(){
+
+        }
         public Builder login(String login){
-            this.login = login;
+            User.this.login = login;
             return this;
         }
         public Builder id(int id) {
-            this.id = id;
+            User.this.id = id;
             return this;
         }
         public Builder password(String password) {
-            this.password = password;
+            User.this.password = password;
             return this;
         }
         public Builder age(int age) {
-            this.age = age;
+            User.this.age = age;
             return this;
         }
         public Builder dailyCalories(int dailyCalories) {
-            this.dailyCalories = dailyCalories;
+            User.this.dailyCalories = dailyCalories;
             return this;
         }
         public Builder height(int height) {
-            this.height = height;
+            User.this.height = height;
             return this;
         }
         public Builder weight(int weight) {
-            this.weight = weight;
+            User.this.weight = weight;
             return this;
         }
         public Builder gender(Gender gender) {
-            this.gender = gender;
+            User.this.gender = gender;
             return this;
         }
         public Builder lifeStyle(LifeStyle lifeStyle) {
-            this.lifeStyle = lifeStyle;
+            User.this.lifeStyle = lifeStyle;
             return this;
         }
-        public Builder roles(Set<Role> roles) {
-            this.roles = roles;
+        public Builder role(Set<Role> roles) {
+            User.this.roles = new HashSet<>(roles);
             return this;
         }
-
         public User build(){
-            User user = new User();
-            user.setId(id);
-            user.setLogin(login);
-            user.setPassword(password);
-            user.setAge(age);
-            user.setDailyCalories(dailyCalories);
-            user.setGender(gender);
-            user.setHeight(height);
-            user.setWeight(weight);
-            user.setLifeStyle(lifeStyle);
-            user.setRoles(roles);
-            roles.add(Role.USER);//todo remove
-            return user;
+            return User.this;
         }
     }
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class AuthCommand implements Command {
     private UserService userService = new UserService();
-    private final String WRONGINPUT ="?wrongInput=true";
+    private final String WRONGINPUTTRUE ="?wrongInput=true";
     @Override
     public String execute(HttpServletRequest request) {
         LoginUserDTO userDTO = new LoginUserDTO(
@@ -24,6 +24,6 @@ public class AuthCommand implements Command {
             System.out.println("user put to session " + user);
             return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.USERPAGE;
         }
-        return JSPRoutes.LOGIN + WRONGINPUT;
+        return JSPRoutes.LOGIN + WRONGINPUTTRUE;
     }
 }

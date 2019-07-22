@@ -10,10 +10,19 @@ public class RegistrationUserDTO {
     private String login;
     private String password;
     private int age;
-    private double height;
-    private double weight;
+    private int height;
+    private int weight;
     private Gender gender;
     private LifeStyle lifeStyle;
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public String getLogin() {
         return login;
@@ -39,19 +48,19 @@ public class RegistrationUserDTO {
         this.age = age;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
