@@ -3,8 +3,7 @@ package com.nazar.controller.filter;
 
 import com.nazar.controller.command.routes.PageRoutes;
 import com.nazar.model.entity.User;
-import com.nazar.utility.AuthUtility;
-import com.nazar.utility.SecurityUtility;
+import com.nazar.service.SecurityService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -31,15 +30,15 @@ public class AuthFilter implements Filter {
         User user = (User) session.getAttribute("user");
         System.out.println("user got from session " + user);
         String PATHINFO = Optional.ofNullable(req.getPathInfo()).orElse("");
-        if(AuthUtility.isUserLogged(req)
+        if(SecurityService.isUserLogged(req)
                 &&(PATHINFO.equals(PageRoutes.LOGIN) || PATHINFO.equals(PageRoutes.REGISTRATION))){
             System.out.println("Redirecting to " + PageRoutes.USERPAGE);
             resp.sendRedirect(req.getServletPath() + PageRoutes.USERPAGE);
             return;
         }
-        if (SecurityUtility.isPageSecured(req)){
+        if (SecurityService.isPageSecured(req)){
             if (user != null) {
-                if (SecurityUtility.hasPermisson(req, user)) {
+                if (SecurityService.hasPermisson(req, user)) {
                     chain.doFilter(request, response);
                 } else {
                     System.out.println("Redirecting to " + PageRoutes.ACCESSDENIED);

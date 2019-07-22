@@ -1,16 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: denla
-  Date: 20.07.2019
-  Time: 12:27
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page isELIgnored="false"%>
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="${bundle}"/>
+<html lang="${param.lang}">
 <head>
     <title>access</title>
+    <meta charset="UTF-8">
 </head>
 <body>
-<h1>AccessDenied</h1>
+<h1><fmt:message key="access.denied"/></h1>
 </body>
 </html>
+

@@ -22,6 +22,31 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>com.nazar.controller.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>I18nFilter</filter-name>
+        <filter-class>com.nazar.controller.filter.I18nFilter</filter-class>
+        <init-param>
+            <param-name>bundle</param-name>
+            <param-value>messages</param-value>
+        </init-param>
+        <init-param>
+            <param-name>locale</param-name>
+            <param-value>ua</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>I18nFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <listener>
     <listener-class>
        com.nazar.controller.listener.SessionListener
