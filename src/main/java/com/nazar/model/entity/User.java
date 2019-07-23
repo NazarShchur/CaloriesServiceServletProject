@@ -10,7 +10,6 @@ public class User {
     private String login;
     private String password;
     private int age;
-    private int dailyCalories;
     private int height;
     private int weight;
     private Gender gender;
@@ -48,14 +47,6 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public int getDailyCalories() {
-        return dailyCalories;
-    }
-
-    public void setDailyCalories(int dailyCalories) {
-        this.dailyCalories = dailyCalories;
     }
 
     public int getWeight() {
@@ -105,7 +96,6 @@ public class User {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
-                ", dailyCalories=" + dailyCalories +
                 ", height=" + height +
                 ", weight=" + weight +
                 ", gender=" + gender +
@@ -137,10 +127,6 @@ public class User {
         }
         public Builder age(int age) {
             User.this.age = age;
-            return this;
-        }
-        public Builder dailyCalories(int dailyCalories) {
-            User.this.dailyCalories = dailyCalories;
             return this;
         }
         public Builder height(int height) {

@@ -6,10 +6,8 @@ public interface UserFields {
     String PASSWORD = "password";
     String AGE = "age";
     String LOGIN = "login";
-    String DAILY_CALORIES = "daily_calories";
     String HEIGHT = "height";
     String LIFE_STYLE = "life_style";
     String GENDER = "gender";
     String WEIGHT = "weight";
-    String ROLE = "role";
 }
