@@ -7,7 +7,7 @@
 <fmt:setBundle basename="${bundle}"/>
 
 <w:wrapper>
-<h1>Login</h1>
+<h1 class="col-lg-12"><fmt:message key="login"/></h1>
 <c:if test="${param.wrongInput == true}">
     <p><fmt:message key="wrong.login.password"/> </p>
 </c:if>

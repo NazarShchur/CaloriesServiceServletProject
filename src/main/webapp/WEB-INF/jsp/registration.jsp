@@ -8,7 +8,7 @@
 
 
 <w:wrapper>
-<h1><fmt:message key="registration"/></h1>
+<h1 class="col-lg-12"><fmt:message key="registration"/></h1>
 <c:if test="${param.unacceptableData == true}">
     <p><fmt:message key="unacceptableData"/></p>
 </c:if>
@@ -58,7 +58,7 @@
         <c:if test="${param.checkHeight == false}">
             <p><fmt:message key="height.err"/></p>
         </c:if>
-        <input type="number" name="height" value="${param.height}"<%--required min="40" max="250"--%>  >
+        <input type="number" name="height" value="${param.height}"required min="40" max="250"  >
         </label>
     </div>
 

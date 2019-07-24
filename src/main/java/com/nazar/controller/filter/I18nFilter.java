@@ -21,7 +21,6 @@ public class I18nFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String localeParameter = request.getParameter(LOCALE);
-        System.out.println("before " + locale + " " + bundle);
         locale = localeParameter != null
                 ? localeParameter
                 : httpRequest.getSession().getAttribute(LOCALE) != null
@@ -30,7 +29,6 @@ public class I18nFilter implements Filter {
 
         httpRequest.getSession().setAttribute(LOCALE, locale);
         httpRequest.getSession().setAttribute(BUNDLE, bundle);
-        System.out.println("after " + locale + " " + bundle);
         filterChain.doFilter(request, response);
     }
 

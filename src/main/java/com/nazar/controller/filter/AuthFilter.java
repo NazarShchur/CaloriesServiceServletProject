@@ -28,7 +28,6 @@ public class AuthFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        System.out.println("user in session now " + user);
         String PATHINFO = Optional.ofNullable(req.getPathInfo()).orElse("");
         if (SecurityService.isUserLogged(req)
                 && (PATHINFO.equals(PageRoutes.LOGIN) || PATHINFO.equals(PageRoutes.REGISTRATION))) {
@@ -41,7 +40,7 @@ public class AuthFilter implements Filter {
                 if (SecurityService.hasPermisson(req, user)) {
                     chain.doFilter(request, response);
                 } else {
-                    System.out.println("Redirecting to " + PageRoutes.ACCESSDENIED);
+                    System.out.println("Redirecting to " + PageRoutes.ACCESSDENIED);//todo remove sout
                     resp.sendRedirect(req.getServletPath() + PageRoutes.ACCESSDENIED);
                 }
             } else {

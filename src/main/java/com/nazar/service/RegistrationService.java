@@ -9,7 +9,7 @@ import com.nazar.model.myexceptions.UnacceptableDataInput;
 public class RegistrationService {
     private final String AND ="&";
     private final String EQ = "=";
-    private final String REGEX = "^[a-z]{1,20}$";
+    private final String REGEX = "^[a-z]{1,20}$"; //todo different REGEXES
     private final String CHECKLOGIN = "checkLogin";
     private final String CHECKPASSWORD = "checkPassword";
     private final String CHECKAGE = "checkAge";

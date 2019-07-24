@@ -1,5 +1,7 @@
 package com.nazar.model.entity;
 
+import java.util.Objects;
+
 public class Food {
     private int id;
     private String name;
@@ -53,6 +55,24 @@ public class Food {
 
     public void setPublicFood(boolean publicFood) {
         this.publicFood = publicFood;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        return id == food.id &&
+                Double.compare(food.fats, fats) == 0 &&
+                Double.compare(food.protein, protein) == 0 &&
+                Double.compare(food.carbohydrate, carbohydrate) == 0 &&
+                publicFood == food.publicFood &&
+                Objects.equals(name, food.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, fats, protein, carbohydrate, publicFood);
     }
 
     public static Builder builder(){

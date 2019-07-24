@@ -7,7 +7,7 @@
 <fmt:setBundle basename="${bundle}"/>
 
 <w:wrapper>
-<h1>Main</h1>
+<h1 class="col-lg-12"><fmt:message key="main"/></h1>
 <a href="${pageContext.request.contextPath}/app/registration"><fmt:message key="registration"/></a>
 <a href="${pageContext.request.contextPath}/app/login"><fmt:message key="log.in"/></a>
 </w:wrapper>

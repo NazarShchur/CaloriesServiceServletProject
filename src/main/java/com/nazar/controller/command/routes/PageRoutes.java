@@ -7,4 +7,5 @@ public interface PageRoutes {
     String LOGIN = "/login";
     String REGISTRATION = "/registration";
     String ACCESSDENIED = "/accessdenied";
+    String NEWMEAL = USERPAGE + "/newmeal";
 }

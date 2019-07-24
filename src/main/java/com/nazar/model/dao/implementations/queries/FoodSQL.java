@@ -11,4 +11,6 @@ public interface FoodSQL {
             + "`ON `" + FoodFields.TABLE_NAME + "`.`" + FoodFields.ID
             + "`=`" + FoodFields.USER_FOOD_JOIN_TABLE + "`.`" + FoodFields.FOOD_ID
             + "`AND`" + FoodFields.USER_FOOD_JOIN_TABLE + "`.`" + FoodFields.USER_ID +"`=(?)";
+    String FINDBYID = "SELECT * FROM `" + FoodFields.TABLE_NAME
+            + "`WHERE`" + FoodFields.ID + "`=(?)";
 }

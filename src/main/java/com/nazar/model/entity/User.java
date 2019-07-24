@@ -1,4 +1,5 @@
 package com.nazar.model.entity;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -98,8 +99,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                ", login=" + login +
+                ", password=" + password +
                 ", age=" + age +
                 ", height=" + height +
                 ", weight=" + weight +
@@ -109,51 +110,61 @@ public class User {
                 '}';
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new User().new Builder();
     }
 
-    public class Builder{
-        private Builder(){
+    public class Builder {
+        private Builder() {
 
         }
-        public Builder login(String login){
+
+        public Builder login(String login) {
             User.this.login = login;
             return this;
         }
+
         public Builder id(int id) {
             User.this.id = id;
             return this;
         }
+
         public Builder password(String password) {
             User.this.password = password;
             return this;
         }
+
         public Builder age(int age) {
             User.this.age = age;
             return this;
         }
+
         public Builder height(int height) {
             User.this.height = height;
             return this;
         }
+
         public Builder weight(int weight) {
             User.this.weight = weight;
             return this;
         }
+
         public Builder gender(Gender gender) {
             User.this.gender = gender;
             return this;
         }
+
         public Builder lifeStyle(LifeStyle lifeStyle) {
             User.this.lifeStyle = lifeStyle;
             return this;
         }
+
         public Builder role(Set<Role> roles) {
             User.this.roles = new HashSet<>(roles);
             return this;
         }
-        public User build(){
+
+        public User build() {
             return User.this;
         }
     }

@@ -4,6 +4,7 @@ import com.nazar.model.dao.interfaces.FoodDao;
 import com.nazar.model.dao.mapper.Mapper;
 import com.nazar.model.dao.mapper.implementations.FoodMapper;
 import com.nazar.model.entity.Food;
+import com.nazar.model.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +27,18 @@ public class JDBCFoodDao implements FoodDao {
 
     @Override
     public Food findById(int id) {
-        return null;
+        Mapper<Food> mapper = new FoodMapper();
+        Food found = new Food();
+        try(PreparedStatement ps = connection.prepareStatement(FoodSQL.FINDBYID)){
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                found = mapper.getEntity(rs);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return found;
     }
 
     @Override

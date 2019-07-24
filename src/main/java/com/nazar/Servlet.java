@@ -16,7 +16,8 @@ import java.util.Map;
 
 public class Servlet extends javax.servlet.http.HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
-    public void init(ServletConfig servletConfig){
+
+    public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
         commands.put("registration",
@@ -37,7 +38,13 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new AccessDeniedCommand());
         commands.put("userpage/newmeal",
                 new NewMealCommand(new FoodService()));
+        commands.put("userpage/newmeal/addfoodtomeal",
+                new AddFoodToMealCommand(new FoodService()));
+        commands.put("userpage/newmeal/deletefoodfrommeal",
+                new DeleteFoodFromMealCommand(new FoodService()));
+
     }
+
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
             throws IOException, ServletException {
@@ -48,17 +55,18 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             throws IOException, ServletException {
         processRequest(request, response);
     }
+
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String path = request.getRequestURI();
-        path = path.replaceAll(".*/app/" , "");
-        Command command = commands.getOrDefault(path ,
-                (r)->"main");
+        path = path.replaceAll(".*/app/", "");
+        System.out.println("PATH - " + path);
+        Command command = commands.getOrDefault(path, new MainCommand());
         String page = command.execute(request);
-        if(page.contains(PageRoutes.REDIRECT)){
+        if (page.contains(PageRoutes.REDIRECT)) {
             System.out.println("Redirecting to " + page);
-            response.sendRedirect(page.replace(PageRoutes.REDIRECT,""));
-        }else {
+            response.sendRedirect(page.replace(PageRoutes.REDIRECT, ""));
+        } else {
             System.out.println("Forwarding to " + page);
             request.getRequestDispatcher(request.getContextPath() + page).forward(request, response);
         }

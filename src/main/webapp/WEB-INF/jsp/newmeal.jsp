@@ -6,15 +6,29 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
 <w:wrapper>
-    <h1><fmt:message key="new.meal"/></h1>
-    <form action="${pageContext.request.contextPath}/app/userpage/addmeal">
-        <select name="foodName">
+    <h1 class="col-lg-12"><fmt:message key="new.meal"/></h1>
+    <form action="${pageContext.request.contextPath}/app/userpage/newmeal/addfoodtomeal" method="post">
+        <select name="foodID">
             <option selected disabled><fmt:message key="select.food"/> </option>
-            <c:forEach items="${requestScope.foodSet}" var="food" begin="0" end="${requestScope.foodSetSize}">
-                <option value="${food.name}">${food.name}</option>
+            <c:forEach items="${sessionScope.availableFood}" var="food">
+                <option value="${food.id}">${food.name}</option>
             </c:forEach>
         </select>
-        <label><input type="number">gramm</label>
+        <label><input name="count" type="number">gramm</label>
         <input type="submit">
     </form>
+        <c:if test="${sessionScope.isFoodInMap == true}">
+            <form action="${pageContext.request.contextPath}/app/userpage/newmeal/deletefoodfrommeal" method="post">
+                <c:forEach items="${sessionScope.currentMap.map}" var="entry">
+                    <p>
+                        <label>
+                            <c:out value="${entry.key.name}"/> - <c:out value="${entry.value}"/>
+                            <button type="submit" name="foodIDToDelete" value="<c:out value="${entry.key.id}"/>">
+                                <fmt:message key="delete.food.from.meal"/>
+                            </button>
+                        </label>
+                    </p>
+                </c:forEach>
+            </form>
+        </c:if>
 </w:wrapper>

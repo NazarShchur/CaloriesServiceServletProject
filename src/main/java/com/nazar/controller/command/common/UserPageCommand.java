@@ -9,5 +9,5 @@ public class UserPageCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         return JSPRoutes.USERPAGE;
-    }
+    }//todo properties for enums
 }
