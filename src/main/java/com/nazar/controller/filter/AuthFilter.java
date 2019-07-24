@@ -28,15 +28,15 @@ public class AuthFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        System.out.println("user got from session " + user);
+        System.out.println("user in session now " + user);
         String PATHINFO = Optional.ofNullable(req.getPathInfo()).orElse("");
-        if(SecurityService.isUserLogged(req)
-                &&(PATHINFO.equals(PageRoutes.LOGIN) || PATHINFO.equals(PageRoutes.REGISTRATION))){
+        if (SecurityService.isUserLogged(req)
+                && (PATHINFO.equals(PageRoutes.LOGIN) || PATHINFO.equals(PageRoutes.REGISTRATION))) {
             System.out.println("Redirecting to " + PageRoutes.USERPAGE);
             resp.sendRedirect(req.getServletPath() + PageRoutes.USERPAGE);
             return;
         }
-        if (SecurityService.isPageSecured(req)){
+        if (SecurityService.isPageSecured(req)) {
             if (user != null) {
                 if (SecurityService.hasPermisson(req, user)) {
                     chain.doFilter(request, response);

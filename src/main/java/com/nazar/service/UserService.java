@@ -8,17 +8,18 @@ import com.nazar.model.entity.User;
 import com.nazar.model.myexceptions.NotUniqueLoginException;
 
 
-public class UserService{
+public class UserService {
     private DaoFactory daoFactory = DaoFactory.getInstance();
-    public void saveNewUser(User user) throws NotUniqueLoginException{
-        try(UserDao dao = daoFactory.createUserDao()) {
+
+    public void saveNewUser(User user) throws NotUniqueLoginException {
+        try (UserDao dao = daoFactory.createUserDao()) {//todo transaction
             dao.create(user);
-            dao.addUserRole(dao.findIdByLogin(user.getLogin()), Role.USER);
         }
         System.out.println("saved " + user);
     }
-    public User auth(LoginUserDTO user){
-        try(UserDao dao = daoFactory.createUserDao()) {
+
+    public User auth(LoginUserDTO user) {
+        try (UserDao dao = daoFactory.createUserDao()) {
             return dao.findUserByLoginAndPassword(user);
         }
     }

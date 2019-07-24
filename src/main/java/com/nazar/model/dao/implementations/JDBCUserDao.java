@@ -25,19 +25,19 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public User findUserByLoginAndPassword(LoginUserDTO user){
+    public User findUserByLoginAndPassword(LoginUserDTO user) {
         Mapper<User> userMapper = new UserMapper();
         User found = new User();
-        try(PreparedStatement ps = connection.prepareStatement(UserSQL.FINDBYLOGINANDPASSWORD)) {
+        try (PreparedStatement ps = connection.prepareStatement(UserSQL.FINDBYLOGINANDPASSWORD)) {
             ps.setString(1, user.getLogin());
             ps.setString(2, user.getPassword());
             ResultSet rs = ps.executeQuery();
             System.out.println("Executed " + UserSQL.FINDBYLOGINANDPASSWORD);
-            if(rs.next()){
+            if (rs.next()) {
                 found = userMapper.getEntity(rs);
                 found.setRoles(findUserRolesByID(found.getId()));
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return found;
@@ -46,15 +46,15 @@ public class JDBCUserDao implements UserDao {
     @Override
     public Set<Role> findUserRolesByID(int id) {
         Set<Role> roleSet = new HashSet<>();
-        try(PreparedStatement ps = connection.prepareStatement(UserSQL.FINDROLESBYID)) {
+        try (PreparedStatement ps = connection.prepareStatement(UserSQL.FINDROLESBYID)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             System.out.println("Executed " + UserSQL.FINDROLESBYID);
-            while (rs.next()){
+            while (rs.next()) {
                 roleSet.add(Role.valueOf(rs.getString(UserRolesFields.ROLE)));
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return roleSet;
@@ -62,11 +62,11 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void addUserRole(int userID, Role role) {
-        try(PreparedStatement ps = connection.prepareStatement(UserSQL.ADDUSERROLE)){
+        try (PreparedStatement ps = connection.prepareStatement(UserSQL.ADDUSERROLE)) {
             ps.setString(1, role.toString());
             ps.setInt(2, userID);
             ps.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -74,14 +74,14 @@ public class JDBCUserDao implements UserDao {
     @Override
     public int findIdByLogin(String login) {
         int id = 0;
-        try(PreparedStatement ps = connection.prepareStatement(UserSQL.FINDIDBYLOGIN)){
+        try (PreparedStatement ps = connection.prepareStatement(UserSQL.FINDIDBYLOGIN)) {
             ps.setString(1, login);
             ResultSet rs = ps.executeQuery();
             System.out.println("Executed " + UserSQL.FINDIDBYLOGIN);
-            if(rs.next()){
+            if (rs.next()) {
                 id = rs.getInt(UserFields.ID);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return id;
@@ -89,19 +89,35 @@ public class JDBCUserDao implements UserDao {
 
 
     @Override
-    public void create(User entity) throws NotUniqueLoginException{
-        try (PreparedStatement ps = connection.prepareStatement(UserSQL.SAVE)) {
-            ps.setString(1, entity.getLogin());
-            ps.setString(2, entity.getPassword());
-            ps.setInt(3, entity.getAge());
-            ps.setString(4, entity.getGender().toString());
-            ps.setInt(5, entity.getHeight());
-            ps.setInt(6, entity.getWeight());
-            ps.setString(7, entity.getLifeStyle().toString());
-            ps.executeUpdate();
+    public void create(User entity) throws NotUniqueLoginException {
+        try (PreparedStatement createUser = connection.prepareStatement(UserSQL.SAVE);
+             PreparedStatement addRole = connection.prepareStatement(UserSQL.ADDUSERROLE)) {
+            connection.setAutoCommit(false);
+            createUser.setString(1, entity.getLogin());
+            createUser.setString(2, entity.getPassword());
+            createUser.setInt(3, entity.getAge());
+            createUser.setString(4, entity.getGender().toString());
+            createUser.setInt(5, entity.getHeight());
+            createUser.setInt(6, entity.getWeight());
+            createUser.setString(7, entity.getLifeStyle().toString());
+            createUser.executeUpdate();
+            addRole.setString(1, Role.USER.toString());
+            addRole.setInt(2, findIdByLogin(entity.getLogin()));
+            addRole.executeUpdate();
+            connection.commit();
         } catch (SQLIntegrityConstraintViolationException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new NotUniqueLoginException(e);
-        } catch (SQLException e){
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new RuntimeException(e);
         }
     }

@@ -4,14 +4,9 @@ import com.nazar.model.dao.implementations.queries.fieldsdb.UserFields;
 import com.nazar.model.dao.mapper.Mapper;
 import com.nazar.model.entity.Gender;
 import com.nazar.model.entity.LifeStyle;
-import com.nazar.model.entity.Role;
 import com.nazar.model.entity.User;
-
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.HashSet;
 
 public class UserMapper implements Mapper<User> {
     @Override
