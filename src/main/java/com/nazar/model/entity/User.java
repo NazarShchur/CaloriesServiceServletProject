@@ -1,7 +1,4 @@
 package com.nazar.model.entity;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +12,15 @@ public class User {
     private Gender gender;
     private Set<Role> roles;
     private LifeStyle lifeStyle;
+    private Set<Food> privateFood;
 
+    public Set<Food> getPrivateFood() {
+        return privateFood;
+    }
+
+    public void setPrivateFood(Set<Food> privateFood) {
+        this.privateFood = privateFood;
+    }
 
     public int getId() {
         return id;
@@ -109,7 +114,6 @@ public class User {
     }
 
     public class Builder{
-
         private Builder(){
 
         }

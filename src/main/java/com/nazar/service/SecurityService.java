@@ -13,7 +13,7 @@ public class SecurityService {
                 .filter(r->SecurityConfig.getSecuredPagesForRole(r).contains(request.getPathInfo()))
                 .toArray().length > 0;
     }
-
+//todo update
     public static Role requiredRole(HttpServletRequest request){
         return  Arrays.stream(Role.values())
                 .filter(r->SecurityConfig.getSecuredPagesForRole(r).contains(request.getPathInfo()))

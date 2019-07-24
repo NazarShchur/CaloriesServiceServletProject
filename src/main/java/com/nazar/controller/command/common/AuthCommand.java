@@ -21,6 +21,7 @@ public class AuthCommand implements Command {
         User user = userService.auth(userDTO);
         if(user.getLogin() != null){
             request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("userid", user.getId());
             System.out.println("user put to session " + user);
             return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.USERPAGE;
         }

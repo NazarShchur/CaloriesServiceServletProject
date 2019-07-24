@@ -3,6 +3,7 @@ package com.nazar;
 import com.nazar.controller.command.*;
 import com.nazar.controller.command.common.*;
 import com.nazar.controller.command.routes.PageRoutes;
+import com.nazar.service.FoodService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -34,6 +35,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new UserPageCommand());
         commands.put("accessdenied",
                 new AccessDeniedCommand());
+        commands.put("userpage/newmeal",
+                new NewMealCommand(new FoodService()));
     }
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)

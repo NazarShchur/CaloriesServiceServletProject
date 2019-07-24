@@ -2,15 +2,12 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false"%>
+<%@taglib prefix="w" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
-<html lang="${param.lang}">
-<head>
-    <title>Registration</title>
-    <meta charset="UTF-8">
-</head>
-<body>
-<jsp:include page="parts/header.jsp"/>
+
+
+<w:wrapper>
 <h1><fmt:message key="registration"/></h1>
 <c:if test="${param.unacceptableData == true}">
     <p><fmt:message key="unacceptableData"/></p>
@@ -25,7 +22,7 @@
         <c:if test="${param.checkLogin == false}">
             <p><fmt:message key="login.regex.err"/></p>
         </c:if>
-        <input type="text" name="login" value="${param.login}" <%--required--%>>
+        <input type="text" name="login" value="${param.login}" required>
         </label>
     </div>
     <div class="col-lg-12">
@@ -34,7 +31,7 @@
         <c:if test="${param.checkPassword == false}">
             <p><fmt:message key="password.regex.err"/></p>
         </c:if>
-        <input type="password" name="password" <%--required--%>>
+        <input type="password" name="password" required>
         </label>
     </div>
     <div class="col-lg-12">
@@ -43,7 +40,7 @@
         <c:if test="${param.checkAge == false}">
             <p><fmt:message key="age.err"/></p>
         </c:if>
-       <input type="number" name="age"  value="${param.age}"<%-- required min="1" max="120" --%>>
+       <input type="number" name="age"  value="${param.age}" required min="1" max="120">
         </label>
     </div>
     <div class="col-lg-12">
@@ -52,7 +49,7 @@
         <c:if test="${param.checkWeight == false}">
             <p><fmt:message key="weight.err"/></p>
         </c:if>
-        <input type="number" name="weight" value="${param.weight}" <%--required min="6" max="600"--%> >
+        <input type="number" name="weight" value="${param.weight}" required min="6" max="600" >
         </label>
     </div>
     <div class="col-lg-12">
@@ -80,5 +77,4 @@
     </div>
     <input type="submit" value="<fmt:message key="register"/>">
 </form>
-</body>
-</html>
+</w:wrapper>

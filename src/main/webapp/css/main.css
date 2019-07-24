@@ -1,0 +1,39 @@
+body{
+    background-image: url("../img/background.jpg");
+}
+.wrapp{
+    background-color: white;
+    min-height: 100% !important;
+}
+.myheader{
+    background-color: white;
+}
+.profile_btn{
+    min-height: 380px !important;
+    border: 1px solid black;/*delete me*/
+    text-align: center;
+    padding-top: 350px;
+}
+.ustats{
+    min-height: 475px !important;
+    border: 1px solid black;/*delete me*/
+}
+.uphoto{
+    min-height: 475px !important;
+    border: 1px solid black;/*delete me*/
+    background-image: url("../img/user.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.uname{
+
+}
+.myfooter{
+    background-color: white;
+    min-height: 300px !important;
+    border: 1px solid black;/*delete me*/
+}
+li{
+    list-style-type: none;
+}

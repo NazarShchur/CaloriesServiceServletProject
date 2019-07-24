@@ -34,4 +34,5 @@ public interface UserSQL {
     String FINDIDBYLOGIN = "SELECT `" + UserFields.ID
             + "` FROM `" + UserFields.TABLE_NAME
             + "` WHERE `" + UserFields.LOGIN + "`=(?)";
+
 }

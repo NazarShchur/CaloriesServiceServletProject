@@ -1,6 +1,7 @@
 package com.nazar.model.dao.implementations;
 
 import com.nazar.model.dao.DaoFactory;
+import com.nazar.model.dao.interfaces.FoodDao;
 import com.nazar.model.dao.interfaces.UserDao;
 
 import java.sql.Connection;
@@ -15,6 +16,7 @@ public class JDBCDaoFactory extends DaoFactory {
     public UserDao createUserDao() {
         return new JDBCUserDao(getConnection());
     }
+    public FoodDao createFoodDao() { return new JDBCFoodDao(getConnection());}
     private Connection getConnection(){
         try {
             return DriverManager.getConnection(
