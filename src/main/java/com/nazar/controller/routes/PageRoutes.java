@@ -1,4 +1,4 @@
-package com.nazar.controller.command.routes;
+package com.nazar.controller.routes;
 
 public interface PageRoutes {
     String REDIRECT = "redirect:";

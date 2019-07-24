@@ -1,11 +1,10 @@
 package com.nazar.controller.command.common;
 
 import com.nazar.controller.command.Command;
-import com.nazar.controller.command.routes.JSPRoutes;
-import com.nazar.controller.command.routes.PageRoutes;
+import com.nazar.controller.routes.JSPRoutes;
+import com.nazar.controller.routes.PageRoutes;
 import com.nazar.model.dto.userdto.CheckUserDTO;
 import com.nazar.model.dto.userdto.RegistrationUserDTO;
-import com.nazar.model.entity.Role;
 import com.nazar.model.entity.User;
 import com.nazar.model.myexceptions.NotUniqueLoginException;
 import com.nazar.model.myexceptions.UnacceptableDataInput;
@@ -13,8 +12,6 @@ import com.nazar.service.RegistrationService;
 import com.nazar.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.HashSet;
 
 
 public class RegisterCommand implements Command {

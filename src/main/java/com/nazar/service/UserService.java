@@ -11,7 +11,7 @@ import com.nazar.model.myexceptions.NotUniqueLoginException;
 public class UserService {
     private DaoFactory daoFactory = DaoFactory.getInstance();
 
-    public void saveNewUser(User user) throws NotUniqueLoginException {
+    public void saveNewUser(User user){
         try (UserDao dao = daoFactory.createUserDao()) {//todo transaction
             dao.create(user);
         }

@@ -1,7 +1,7 @@
 package com.nazar.controller.filter;
 
 
-import com.nazar.controller.command.routes.PageRoutes;
+import com.nazar.controller.routes.PageRoutes;
 import com.nazar.model.entity.User;
 import com.nazar.service.SecurityService;
 

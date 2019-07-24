@@ -2,8 +2,10 @@ package com.nazar;
 
 import com.nazar.controller.command.*;
 import com.nazar.controller.command.common.*;
-import com.nazar.controller.command.routes.PageRoutes;
+import com.nazar.controller.routes.PageRoutes;
+import com.nazar.controller.command.user.LogOutCommand;
 import com.nazar.service.FoodService;
+import com.nazar.service.MealService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -42,6 +44,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new AddFoodToMealCommand(new FoodService()));
         commands.put("userpage/newmeal/deletefoodfrommeal",
                 new DeleteFoodFromMealCommand(new FoodService()));
+        commands.put("userpage/newmeal/savemeal",
+                new SaveMealCommand(new MealService()));
 
     }
 
@@ -60,11 +64,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
             throws ServletException, IOException {
         String path = request.getRequestURI();
         path = path.replaceAll(".*/app/", "");
-        System.out.println("PATH - " + path);
         Command command = commands.getOrDefault(path, new MainCommand());
         String page = command.execute(request);
         if (page.contains(PageRoutes.REDIRECT)) {
-            System.out.println("Redirecting to " + page);
+            System.out.println("Redirecting to " + page);//todo remove 2
             response.sendRedirect(page.replace(PageRoutes.REDIRECT, ""));
         } else {
             System.out.println("Forwarding to " + page);

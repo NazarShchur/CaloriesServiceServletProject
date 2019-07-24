@@ -89,7 +89,7 @@ public class JDBCUserDao implements UserDao {
 
 
     @Override
-    public void create(User entity) throws NotUniqueLoginException {
+    public void create(User entity){
         try (PreparedStatement createUser = connection.prepareStatement(UserSQL.SAVE);
              PreparedStatement addRole = connection.prepareStatement(UserSQL.ADDUSERROLE)) {
             connection.setAutoCommit(false);

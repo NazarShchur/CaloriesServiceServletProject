@@ -1,8 +1,8 @@
 package com.nazar.controller.command.common;
 
 import com.nazar.controller.command.Command;
-import com.nazar.controller.command.routes.JSPRoutes;
-import com.nazar.controller.command.routes.PageRoutes;
+import com.nazar.controller.routes.JSPRoutes;
+import com.nazar.controller.routes.PageRoutes;
 import com.nazar.model.dto.userdto.LoginUserDTO;
 import com.nazar.model.entity.User;
 import com.nazar.service.UserService;

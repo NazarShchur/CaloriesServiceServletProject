@@ -1,6 +1,6 @@
 package com.nazar.config;
 
-import com.nazar.controller.command.routes.PageRoutes;
+import com.nazar.controller.routes.PageRoutes;
 import com.nazar.model.entity.Role;
 
 import java.util.ArrayList;

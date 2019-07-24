@@ -8,8 +8,6 @@ import com.nazar.model.myexceptions.NotUniqueLoginException;
 import java.util.Set;
 
 public interface UserDao extends CRUDDao<User> {
-    @Override
-    void create(User user) throws NotUniqueLoginException;
     User findUserByLoginAndPassword(LoginUserDTO user);
     Set<Role> findUserRolesByID(int id);
     void addUserRole(int userID, Role role);

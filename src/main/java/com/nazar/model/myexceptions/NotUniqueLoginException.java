@@ -1,6 +1,6 @@
 package com.nazar.model.myexceptions;
 
-public class NotUniqueLoginException extends Exception {
+public class NotUniqueLoginException extends RuntimeException {
     private String loginData;
     public NotUniqueLoginException() {
     }

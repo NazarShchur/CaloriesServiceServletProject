@@ -21,7 +21,7 @@ public class JDBCFoodDao implements FoodDao {
     }
 
     @Override
-    public void create(Food entity) throws Exception {
+    public void create(Food entity){
 
     }
 
