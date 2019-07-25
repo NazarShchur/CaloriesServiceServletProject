@@ -13,6 +13,7 @@ import java.util.Optional;
 public class NewMealCommand implements Command {
     private final String AVAILABLEFOOD = "availableFood";
     private final String CURRENTMAP = "currentMap";
+    private final String ISFOODINMAP = "isFoodInMap";
     private FoodService foodService;
 
     public NewMealCommand(FoodService foodService) {
@@ -26,6 +27,7 @@ public class NewMealCommand implements Command {
                 .orElse(new FoodCountMapDTO());
         List<Food> availableFood = foodService.getAvailableFoodList(currentMap.getMap(), currentUserID);
         request.getSession().setAttribute(AVAILABLEFOOD, availableFood);
+        request.getSession().setAttribute(ISFOODINMAP,currentMap.getMap().size() > 0);
         return JSPRoutes.NEWMEAL;
     }
 }

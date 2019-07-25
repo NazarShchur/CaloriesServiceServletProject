@@ -46,6 +46,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new DeleteFoodFromMealCommand(new FoodService()));
         commands.put("userpage/newmeal/savemeal",
                 new SaveMealCommand(new MealService()));
+        commands.put("userpage/allmeals",
+                new AllMealsCommand(new MealService()));
 
     }
 
@@ -69,6 +71,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         if (page.contains(PageRoutes.REDIRECT)) {
             System.out.println("Redirecting to " + page);//todo remove 2
             response.sendRedirect(page.replace(PageRoutes.REDIRECT, ""));
+
         } else {
             System.out.println("Forwarding to " + page);
             request.getRequestDispatcher(request.getContextPath() + page).forward(request, response);

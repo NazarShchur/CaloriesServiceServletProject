@@ -1,6 +1,7 @@
 package com.nazar.model.entity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class User {
@@ -13,7 +14,9 @@ public class User {
     private Gender gender;
     private Set<Role> roles;
     private LifeStyle lifeStyle;
-    private Set<Food> privateFood;
+    private Set<Food> privateFood;//todo ???
+
+
 
     public Set<Food> getPrivateFood() {
         return privateFood;

@@ -7,7 +7,7 @@ import com.nazar.model.dto.userdto.CheckUserDTO;
 import com.nazar.model.dto.userdto.RegistrationUserDTO;
 import com.nazar.model.entity.User;
 import com.nazar.model.myexceptions.NotUniqueLoginException;
-import com.nazar.model.myexceptions.UnacceptableDataInput;
+import com.nazar.model.myexceptions.UnacceptableDataInputException;
 import com.nazar.service.RegistrationService;
 import com.nazar.service.UserService;
 
@@ -33,7 +33,7 @@ public class RegisterCommand implements Command {
         RegistrationUserDTO validUser;
         try {
             validUser = regisrationService.checkIsValidDataAndReturnValidDTO(userDTO);
-        } catch (UnacceptableDataInput e){
+        } catch (UnacceptableDataInputException e){
             return JSPRoutes.REGISTRATION + UNACCAPTABLEDATA;
         }
         if(regisrationService.checkIsNotCorrectData(validUser)){

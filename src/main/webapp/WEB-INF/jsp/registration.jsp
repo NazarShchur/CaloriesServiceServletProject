@@ -8,11 +8,11 @@
 
 
 <w:wrapper>
-<h1 class="col-lg-12"><fmt:message key="registration"/></h1>
+<h1 class="col-lg-12 text-center"><fmt:message key="registration"/></h1>
 <c:if test="${param.unacceptableData == true}">
     <p><fmt:message key="unacceptableData"/></p>
 </c:if>
-<form method="post" action="${pageContext.request.contextPath}/app/register">
+<form class="col-lg-12 regform" method="post" action="${pageContext.request.contextPath}/app/register">
     <c:if test="${param.notUniqueLogin == true}">
         <p><fmt:message key="login.occupied"/></p>
     </c:if>

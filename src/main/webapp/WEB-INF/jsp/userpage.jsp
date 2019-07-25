@@ -48,7 +48,7 @@
         <a href="#"class="col-lg-4 profile_btn">
             <fmt:message key="add.food"/>
         </a>
-        <a href="#"class="col-lg-4 profile_btn">
+        <a href="${pageContext.request.contextPath}/app/userpage/allmeals" class="col-lg-4 profile_btn">
             <fmt:message key="all.meal"/>
         </a>
     </div>

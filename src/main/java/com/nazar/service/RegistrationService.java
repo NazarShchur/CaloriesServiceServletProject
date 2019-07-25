@@ -4,7 +4,7 @@ import com.nazar.model.dto.userdto.CheckUserDTO;
 import com.nazar.model.dto.userdto.RegistrationUserDTO;
 import com.nazar.model.entity.Gender;
 import com.nazar.model.entity.LifeStyle;
-import com.nazar.model.myexceptions.UnacceptableDataInput;
+import com.nazar.model.myexceptions.UnacceptableDataInputException;
 
 public class RegistrationService {
     private final String AND ="&";
@@ -56,20 +56,20 @@ public class RegistrationService {
                 + AND + CHECKWEIGHT + EQ + isWeightCorrect(user.getWeight()) + AND + WEIGHT + EQ + user.getWeight()
                 + AND + CHECKAGE + EQ + isAgeCorrect(user.getAge()) + AND + AGE + EQ + user.getAge();
     }
-    public RegistrationUserDTO checkIsValidDataAndReturnValidDTO(CheckUserDTO userDTO) throws UnacceptableDataInput{
+    public RegistrationUserDTO checkIsValidDataAndReturnValidDTO(CheckUserDTO userDTO) throws UnacceptableDataInputException {
         RegistrationUserDTO user = new RegistrationUserDTO();
         try {
             user.setHeight(Integer.parseInt(userDTO.getHeight()));
             user.setWeight(Integer.parseInt(userDTO.getWeight()));
             user.setAge(Integer.parseInt(userDTO.getAge()));
         } catch (NumberFormatException e){
-            throw new UnacceptableDataInput();
+            throw new UnacceptableDataInputException();
         }
         try {
             user.setLifeStyle(LifeStyle.valueOf(userDTO.getLifeStyle()));
             user.setGender(Gender.valueOf(userDTO.getGender()));
         } catch (IllegalArgumentException e){
-            throw new UnacceptableDataInput();
+            throw new UnacceptableDataInputException();
         }
         user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());

@@ -3,5 +3,5 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
 <div class="myfooter">
-
+<h1 class="text-center">FOOTER</h1>
 </div>

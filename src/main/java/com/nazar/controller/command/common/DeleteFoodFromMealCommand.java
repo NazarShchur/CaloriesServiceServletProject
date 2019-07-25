@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 public class DeleteFoodFromMealCommand implements Command {
     private final String CURRENTMAP = "currentMap";
     private final String ISFOODINMAP = "isFoodInMap";
-    private final String FOODIDTODELTE = "foodIDToDelete";
+    private final String FOODIDTODELETE = "foodIDToDelete";
 
     private FoodService foodService;
 
@@ -20,11 +20,9 @@ public class DeleteFoodFromMealCommand implements Command {
     }
     @Override
     public String execute(HttpServletRequest request){
-        System.out.println("TRY TO DELETE NOW");
         FoodCountMapDTO currentMap = (FoodCountMapDTO)request.getSession().getAttribute(CURRENTMAP);
-        Food foodToDeleteFromMeal = foodService.findByID(Integer.parseInt(request.getParameter(FOODIDTODELTE)));
+        Food foodToDeleteFromMeal = foodService.findByID(Integer.parseInt(request.getParameter(FOODIDTODELETE)));
         currentMap.getMap().remove(foodToDeleteFromMeal);
-        request.getSession().setAttribute(ISFOODINMAP,currentMap.getMap().size() > 0);
         request.getSession().setAttribute(CURRENTMAP, currentMap);
         return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.NEWMEAL;
     }

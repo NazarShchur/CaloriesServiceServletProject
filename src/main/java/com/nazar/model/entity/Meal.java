@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Meal {
     private int id;
-    private User user;
+    private int userId;
     private String description;
     private LocalDate addTime;
     private int allCalories;
@@ -29,14 +29,13 @@ public class Meal {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-
     public String getDescription() {
         return description;
     }
@@ -64,7 +63,7 @@ public class Meal {
     public String toString() {
         return "Meal{" +
                 "id=" + id +
-                ", user=" + user +
+                ", userId=" + userId +
                 ", description='" + description + '\'' +
                 ", addTime=" + addTime +
                 ", allCalories=" + allCalories +
@@ -81,8 +80,8 @@ public class Meal {
             Meal.this.id = id;
             return this;
         }
-        public Builder user(User user){
-            Meal.this.user = user;
+        public Builder userId(int userId){
+            Meal.this.userId = userId;
             return this;
         }
         public Builder description(String description){

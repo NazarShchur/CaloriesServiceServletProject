@@ -7,4 +7,5 @@ public interface JSPRoutes {
     String USERPAGE = "/WEB-INF/jsp/userpage.jsp";
     String ACCESSDENIED = "/WEB-INF/jsp/accessdenied.jsp";
     String NEWMEAL = "/WEB-INF/jsp/newmeal.jsp";
+    String ALLMEALS = "/WEB-INF/jsp/allmeals.jsp";
 }
