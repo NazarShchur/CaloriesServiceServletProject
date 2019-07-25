@@ -67,7 +67,7 @@ public class JDBCUserDao implements UserDao {
             ps.setInt(2, userID);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);//todo ???
         }
     }
 
