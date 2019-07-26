@@ -11,4 +11,8 @@ public enum LifeStyle {
         this.amr = amr;
     }
     private double amr;
+
+    public double getAmr() {
+        return amr;
+    }
 }

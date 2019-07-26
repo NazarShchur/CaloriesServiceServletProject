@@ -10,10 +10,10 @@ import java.util.Optional;
 
 
 public class AddFoodToMealCommand implements Command {
-    private final String FOODID = "foodID";
-    private final String CURRENTMAP = "currentMap";
+    private final String FOOD_ID = "foodID";
+    private final String CURRENT_MAP = "currentMap";
     private final String COUNT = "count";
-    private final String ISFOODINMAP = "isFoodInMap";
+    private final String IS_FOOD_IN_MAP = "isFoodInMap";
     private FoodService foodService;
 
 
@@ -23,13 +23,14 @@ public class AddFoodToMealCommand implements Command {
     @Override
     public String execute(HttpServletRequest request){
 
-        Food addedFood = foodService.findByID(Integer.parseInt(request.getParameter(FOODID)));
+        Food addedFood = foodService.findByID(Integer.parseInt(request.getParameter(FOOD_ID)));
         int countOfAddedFood = Integer.parseInt(request.getParameter(COUNT));
-        FoodCountMapDTO currentMap = Optional.ofNullable((FoodCountMapDTO)request.getSession().getAttribute(CURRENTMAP))
+        FoodCountMapDTO currentMap = Optional.ofNullable((FoodCountMapDTO)request.getSession().getAttribute(CURRENT_MAP))
                 .orElse(new FoodCountMapDTO());
         currentMap.getMap().put(addedFood, countOfAddedFood);
-        request.getSession().setAttribute(CURRENTMAP, currentMap);
-        request.getSession().setAttribute(ISFOODINMAP, true);
-        return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.NEWMEAL;
+        foodService.countAllCalories(currentMap);
+        request.getSession().setAttribute(CURRENT_MAP, currentMap);
+        request.getSession().setAttribute(IS_FOOD_IN_MAP, true);
+        return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.NEW_MEAL;
     }
 }

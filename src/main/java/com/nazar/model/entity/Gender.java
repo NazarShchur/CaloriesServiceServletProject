@@ -15,4 +15,21 @@ public enum Gender {
     private double heightC;
     private double ageC;
     private double baseCalories;
+
+    public double getWeightC() {
+        return weightC;
+    }
+
+    public double getHeightC() {
+        return heightC;
+    }
+
+    public double getAgeC() {
+        return ageC;
+    }
+
+    public double getBaseCalories() {
+        return baseCalories;
+    }
+
 }

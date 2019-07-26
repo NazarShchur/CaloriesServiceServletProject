@@ -14,9 +14,25 @@ public class User {
     private Gender gender;
     private Set<Role> roles;
     private LifeStyle lifeStyle;
-    private Set<Food> privateFood;//todo ???
+    private Set<Food> privateFood;
+    private int dailyCalories;
+    private int todayCalories;
 
+    public int getTodayCalories() {
+        return todayCalories;
+    }
 
+    public void setTodayCalories(int todayCalories) {
+        this.todayCalories = todayCalories;
+    }
+
+    public int getDailyCalories() {
+        return dailyCalories;
+    }
+
+    public void setDailyCalories(int dailyCalories) {
+        this.dailyCalories = dailyCalories;
+    }
 
     public Set<Food> getPrivateFood() {
         return privateFood;

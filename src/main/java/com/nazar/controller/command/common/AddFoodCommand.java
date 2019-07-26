@@ -5,9 +5,9 @@ import com.nazar.controller.routes.JSPRoutes;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class AccessDeniedCommand implements Command {
+public class AddFoodCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        return JSPRoutes.ACCESS_DENIED;
+        return JSPRoutes.ADD_FOOD;
     }
 }

@@ -5,9 +5,9 @@
 <div class="myheader">
     <div class="row">
     <a href="${pageContext.request.contextPath}/app/main" class="col-lg-2 logo">Calories</a>
-    <a href="${pageContext.request.contextPath}/app/userpage" class="col-lg-2">User Page</a>
+    <a href="${pageContext.request.contextPath}/app/userpage" class="col-lg-2"><fmt:message key="user.profile"/></a>
     <div class="col-lg-2 offset-4">
-        <form method="post"action="${pageContext.request.contextPath}/app/logout">
+        <form method="post" action="${pageContext.request.contextPath}/app/logout">
             <input type="submit" value="<fmt:message key="logout"/>">
         </form>
     </div>

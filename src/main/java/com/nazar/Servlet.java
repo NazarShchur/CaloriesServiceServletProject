@@ -6,6 +6,7 @@ import com.nazar.controller.routes.PageRoutes;
 import com.nazar.controller.command.user.LogOutCommand;
 import com.nazar.service.FoodService;
 import com.nazar.service.MealService;
+import com.nazar.service.UserService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -35,7 +36,7 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         commands.put("auth",
                 new AuthCommand());
         commands.put("userpage",
-                new UserPageCommand());
+                new UserPageCommand(new UserService(), new MealService()));
         commands.put("accessdenied",
                 new AccessDeniedCommand());
         commands.put("userpage/newmeal",
@@ -48,6 +49,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new SaveMealCommand(new MealService()));
         commands.put("userpage/allmeals",
                 new AllMealsCommand(new MealService()));
+        commands.put("userpage/addfood",
+                new AddFoodCommand());
+        commands.put("userpage/addfood/savefood",
+                new SaveFoodCommand(new FoodService()));
 
     }
 

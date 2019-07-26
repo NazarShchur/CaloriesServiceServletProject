@@ -66,7 +66,7 @@ public class RegistrationService {
             throw new UnacceptableDataInputException();
         }
         try {
-            user.setLifeStyle(LifeStyle.valueOf(userDTO.getLifeStyle()));
+            user.setLifeStyle(LifeStyle.valueOf(userDTO.getLifeStyle()));//todo check null
             user.setGender(Gender.valueOf(userDTO.getGender()));
         } catch (IllegalArgumentException e){
             throw new UnacceptableDataInputException();

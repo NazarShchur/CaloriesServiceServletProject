@@ -61,7 +61,7 @@
             </c:forEach>
         <tr>
             <td>
-                Total Calories
+                <fmt:message key="total.calories"/>
             </td>
             <td>
                     ${meal.getAllCalories()}

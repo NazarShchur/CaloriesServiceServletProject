@@ -3,10 +3,7 @@ package com.nazar.config;
 import com.nazar.controller.routes.PageRoutes;
 import com.nazar.model.entity.Role;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SecurityConfig {
     private static Map <Role, List<String>> securedPages = new HashMap<>();
@@ -14,9 +11,16 @@ public class SecurityConfig {
         init();
     }
     private static void init(){
-        List<String> userPagesList = new ArrayList<>();
-        userPagesList.add(PageRoutes.USERPAGE);
-        securedPages.put(Role.USER, userPagesList);
+        securedPages.put(Role.USER, Arrays.asList(
+                PageRoutes.USER_PAGE,
+                PageRoutes.NEW_MEAL,
+                PageRoutes.ADD_FOOD,
+                PageRoutes.ADD_FOOD_TO_MEAL,
+                PageRoutes.ALL_MEALS,
+                PageRoutes.DELETE_FOOD_FROM_MEAL,
+                PageRoutes.SAVE_MEAL,
+                PageRoutes.SAVE_FOOD));
+
         List<String> adminPagesList = new ArrayList<>();
         securedPages.put(Role.ADMIN, adminPagesList);
     }

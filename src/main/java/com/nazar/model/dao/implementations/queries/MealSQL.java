@@ -10,18 +10,18 @@ public interface MealSQL{
             + MealFields.DESCRIPTION + "`, `"
             + MealFields.ADD_TIME + "`, `"
             + MealFields.USER_ID
-            + "`) VALUES ((?), (?), (?))";
+            + "`) VALUES ((?), now(), (?))";
 
-    String ADDFOODTOMEAL = "INSERT INTO `"
+    String ADD_FOOD_TO_MEAL = "INSERT INTO `"
             + MealFoodFields.TABLE_NAME + "`(`"
             + MealFoodFields.FOOD_ID + "`, `"
             + MealFoodFields.MEAL_ID + "`, `"
             + MealFoodFields.FOOD_COUNT
             + "`) VALUES ((?), (?), (?))";
-    String FINDBYUSERID= "SELECT * FROM `"
+    String FIND_BY_USER_ID = "SELECT * FROM `"
             + MealFields.TABLE_NAME
             + "` WHERE `" + MealFields.USER_ID + "`=(?)";
-    String GETFOODFROMMEAL = "SELECT * FROM `"
+    String GET_FOOD_FROM_MEAL = "SELECT * FROM `"
             + FoodFields.TABLE_NAME + "`JOIN `"
             + MealFoodFields.TABLE_NAME + "` ON `"
             + FoodFields.TABLE_NAME + "`.`" + FoodFields.ID

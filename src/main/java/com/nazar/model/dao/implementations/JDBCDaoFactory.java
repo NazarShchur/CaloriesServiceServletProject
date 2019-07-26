@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCDaoFactory extends DaoFactory {
-    private final String DB_URL = "jdbc:mysql://localhost:3306/servletdb?serverTimezone=UTC";
+    private final String DB_URL = "jdbc:mysql://localhost:3306/servletdb?serverTimezone=GMT";
     private final String DB_PASSWORD = "root";
     private final String DB_USER = "root";
 

@@ -22,7 +22,7 @@
                 <fmt:message key="age"/> : <c:out value="${sessionScope.user.age}"/>
             </li>
             <li>
-                <fmt:message key="gender"/> : <c:out value="${sessionScope.user.gender}"/>
+                <fmt:message key="gender"/> : <fmt:message key="${sessionScope.user.gender}"/>
             </li>
             <li>
                 <fmt:message key="weight"/> : <c:out value="${sessionScope.user.weight}"/>
@@ -31,13 +31,13 @@
                 <fmt:message key="height"/> : <c:out value="${sessionScope.user.height}"/>
             </li>
             <li>
-                <fmt:message key="lifestyle"/> : <c:out value="${sessionScope.user.lifeStyle}"/>
+                <fmt:message key="lifestyle"/> : <fmt:message key="${sessionScope.user.lifeStyle}"/>
             </li>
             <li>
-                <fmt:message key="daily.calories"/> : 3000
+                <fmt:message key="daily.calories"/> : <c:out value="${sessionScope.user.dailyCalories}"/>
             </li>
             <li>
-                <fmt:message key="today.consumed"/> : 3000
+                <fmt:message key="today.consumed"/> : <c:out value="${sessionScope.todayEaten}"/>
             </li>
         </ul>
     </div>
@@ -45,7 +45,7 @@
         <a href="${pageContext.request.contextPath}/app/userpage/newmeal" class="col-lg-4 profile_btn">
             <fmt:message key="add.meal"/>
         </a>
-        <a href="#"class="col-lg-4 profile_btn">
+        <a href="${pageContext.request.contextPath}/app/userpage/addfood" class="col-lg-4 profile_btn">
             <fmt:message key="add.food"/>
         </a>
         <a href="${pageContext.request.contextPath}/app/userpage/allmeals" class="col-lg-4 profile_btn">

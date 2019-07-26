@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class RegisterCommand implements Command {
     private final String NOT_UNIQUE_LOGIN = "?notUniqueLogin=true";
-    private final String UNACCAPTABLEDATA = "?unacceptableData=true";
+    private final String UNACCAPTABLE_DATA = "?unacceptableData=true";
     private RegistrationService regisrationService = new RegistrationService();
     private UserService userService = new UserService();
 
@@ -34,7 +34,7 @@ public class RegisterCommand implements Command {
         try {
             validUser = regisrationService.checkIsValidDataAndReturnValidDTO(userDTO);
         } catch (UnacceptableDataInputException e){
-            return JSPRoutes.REGISTRATION + UNACCAPTABLEDATA;
+            return JSPRoutes.REGISTRATION + UNACCAPTABLE_DATA;
         }
         if(regisrationService.checkIsNotCorrectData(validUser)){
             return JSPRoutes.REGISTRATION + regisrationService.getURLParams(validUser);

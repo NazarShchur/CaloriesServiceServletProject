@@ -3,14 +3,30 @@ package com.nazar.model.dao.implementations.queries;
 import com.nazar.model.dao.implementations.queries.fieldsdb.FoodFields;
 
 public interface FoodSQL {
-    String FINDALL = "SELECT * FROM `" + FoodFields.TABLE_NAME + "`";
-    String FINDBYISPUBLIC = "SELECT * FROM `" + FoodFields.TABLE_NAME + "`"
-            + "WHERE `" + FoodFields.ISPUBLIC + "`=(?)";
-    String FINDBYUSERID = "SELECT * FROM `" + FoodFields.TABLE_NAME
-            + "`JOIN`" + FoodFields.USER_FOOD_JOIN_TABLE
-            + "`ON `" + FoodFields.TABLE_NAME + "`.`" + FoodFields.ID
-            + "`=`" + FoodFields.USER_FOOD_JOIN_TABLE + "`.`" + FoodFields.FOOD_ID
-            + "`AND`" + FoodFields.USER_FOOD_JOIN_TABLE + "`.`" + FoodFields.USER_ID +"`=(?)";
+    String FIND_ALL = "SELECT * FROM `" + FoodFields.TABLE_NAME + "`";
+
+    String FIND_PUBLIC = "SELECT * FROM `" + FoodFields.TABLE_NAME + "`"
+            + "WHERE `" + FoodFields.USER_ID + "` IS NULL";
+
+    String FIND_BY_USER_ID = "SELECT * FROM `" + FoodFields.TABLE_NAME
+            + "`WHERE`" + FoodFields.USER_ID +"`=(?)";
+
     String FINDBYID = "SELECT * FROM `" + FoodFields.TABLE_NAME
             + "`WHERE`" + FoodFields.ID + "`=(?)";
+
+    String SAVE = "INSERT INTO `"
+            + FoodFields.TABLE_NAME + "`(`"
+            + FoodFields.CARBOHYDRATE + "`, `"
+            + FoodFields.FATS + "`, `"
+            + FoodFields.PROTEIN + "`, `"
+            + FoodFields.NAME
+            + "`) VALUES ((?), (?), (?), (?))";
+    String SAVE_PRIVATE = "INSERT INTO `"
+            + FoodFields.TABLE_NAME + "`(`"
+            + FoodFields.USER_ID + "`, `"
+            + FoodFields.CARBOHYDRATE + "`, `"
+            + FoodFields.FATS + "`, `"
+            + FoodFields.PROTEIN + "`, `"
+            + FoodFields.NAME
+            + "`) VALUES ((?), (?), (?), (?), (?))";
 }

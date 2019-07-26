@@ -35,6 +35,9 @@
                     </label>
                 </p>
             </c:forEach>
+            <p>
+                <fmt:message key="total.calories"/> - <c:out value="${sessionScope.currentMap.calories}"/>
+            </p>
         </form>
         <form action="${pageContext.request.contextPath}/app/userpage/newmeal/savemeal" method="post">
             <label>Description <input type="text" name="description"></label>

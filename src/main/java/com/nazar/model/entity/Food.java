@@ -3,12 +3,13 @@ package com.nazar.model.entity;
 import java.util.Objects;
 
 public class Food {
-    private int id;
-    private String name;
-    private double fats;
-    private double protein;
-    private double carbohydrate;
-    private boolean publicFood;
+    protected int id;
+    protected String name;
+    protected double fats;
+    protected double protein;
+    protected double carbohydrate;
+
+
     public int getId() {
         return id;
     }
@@ -49,13 +50,6 @@ public class Food {
         this.carbohydrate = carbohydrate;
     }
 
-    public boolean isPublicFood() {
-        return publicFood;
-    }
-
-    public void setPublicFood(boolean publicFood) {
-        this.publicFood = publicFood;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -66,20 +60,18 @@ public class Food {
                 Double.compare(food.fats, fats) == 0 &&
                 Double.compare(food.protein, protein) == 0 &&
                 Double.compare(food.carbohydrate, carbohydrate) == 0 &&
-                publicFood == food.publicFood &&
                 Objects.equals(name, food.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, fats, protein, carbohydrate, publicFood);
+        return Objects.hash(id, name, fats, protein, carbohydrate);
     }
 
     public static Builder builder(){
         return new Food().new Builder();
     }
     public class Builder{
-        private Builder(){}
         public Builder name(String name){
             Food.this.name = name;
             return this;
@@ -98,10 +90,6 @@ public class Food {
         }
         public Builder carbohydrate(double carbohydrate){
             Food.this.carbohydrate = carbohydrate;
-            return this;
-        }
-        public Builder publicFood(boolean publicFood){
-            Food.this.publicFood = publicFood;
             return this;
         }
         public Food build(){

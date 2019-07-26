@@ -24,23 +24,25 @@ public class JDBCMealDao implements MealDao {
     @Override
     public void create(Meal meal){
         try(PreparedStatement createMeal = connection.prepareStatement(MealSQL.CREATE, Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement addFood = connection.prepareStatement(MealSQL.ADDFOODTOMEAL)){
+            PreparedStatement addFood = connection.prepareStatement(MealSQL.ADD_FOOD_TO_MEAL)){
             connection.setAutoCommit(false);
             createMeal.setString(1, meal.getDescription());
-            createMeal.setDate(2, Date.valueOf(meal.getAddTime()));
-            createMeal.setInt(3, meal.getUserId());
+            createMeal.setInt(2, meal.getUserId());
             createMeal.executeUpdate();
             ResultSet rs = createMeal.getGeneratedKeys();
             int currentMealID = 0;
+
             if(rs.next()){
                 currentMealID = rs.getInt(1);
             }
+
             for(Map.Entry<Food, Integer> entry : meal.getFoodMap().entrySet()){
                 addFood.setInt(1, entry.getKey().getId());
                 addFood.setInt(2, currentMealID);
                 addFood.setInt(3, entry.getValue());
                 addFood.executeUpdate();
             }
+
             connection.commit();
         }  catch (SQLException e){
             try {
@@ -58,7 +60,7 @@ public class JDBCMealDao implements MealDao {
     }
 
     @Override
-    public List findAll() {
+    public List<Meal> findAll() {
         return null;
     }
 
@@ -79,14 +81,17 @@ public class JDBCMealDao implements MealDao {
 
 
     @Override
-    public List<Meal> findAllByUserId(int id) { //todo ???
+    public List<Meal> findAllByUserId(int id) {
         Mapper<Meal> mealMapper = new MealMapper();
         List<Meal> meals = new ArrayList<>();
-        try(PreparedStatement findMeals = connection.prepareStatement(MealSQL.FINDBYUSERID)){
+        try(PreparedStatement findMeals = connection.prepareStatement(MealSQL.FIND_BY_USER_ID)){
             findMeals.setInt(1, id);
             ResultSet mealSet = findMeals.executeQuery();
             while (mealSet.next()){
                 meals.add(mealMapper.getEntity(mealSet));
+            }
+            for(Meal m : meals){
+                m.setFoodMap(findFoodByMealId(m.getId()));
             }
 
         } catch (SQLException e){
@@ -99,12 +104,10 @@ public class JDBCMealDao implements MealDao {
     public Map<Food, Integer> findFoodByMealId(int id) {
         Map<Food, Integer> map = new HashMap<>();
         Mapper<Map<Food, Integer>> mapper = new FoodCountMapper();
-        try (PreparedStatement ps = connection.prepareStatement(MealSQL.GETFOODFROMMEAL)){
+        try (PreparedStatement ps = connection.prepareStatement(MealSQL.GET_FOOD_FROM_MEAL)){
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            System.out.println("EXECUTED ASDSA" + MealSQL.GETFOODFROMMEAL);
             while (rs.next()){
-                System.out.println((mapper.getEntity(rs) + "FOUND FOOD LIST"));
                map.putAll(mapper.getEntity(rs));
             }
         }catch (SQLException e){

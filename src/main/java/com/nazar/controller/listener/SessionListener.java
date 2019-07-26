@@ -11,7 +11,7 @@ public class SessionListener implements HttpSessionListener {
         System.out.println("Session created");
     }
 
-    @Override
+    @Override //todo do
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
         System.out.println("Session destroyed");
     }

@@ -2,8 +2,9 @@ package com.nazar.service;
 
 import com.nazar.model.dao.DaoFactory;
 import com.nazar.model.dao.interfaces.FoodDao;
+import com.nazar.model.dto.fooddto.FoodCountMapDTO;
 import com.nazar.model.entity.Food;
-import com.nazar.model.entity.Meal;
+import com.nazar.model.entity.PrivateFood;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,19 +13,13 @@ import java.util.stream.Collectors;
 public class FoodService {
     private DaoFactory daoFactory = DaoFactory.getInstance();
 
-    public List<Food> getAllFoodList() {
-        try (FoodDao dao = daoFactory.createFoodDao()) {
-            return dao.findAll();
-        }
-    }
-
     public List<Food> getFoodListByIsPublic(boolean isPublic) {
         try (FoodDao dao = daoFactory.createFoodDao()) {
             return dao.findByIsPublic(isPublic);
         }
     }
 
-    public List<Food> getPrivateFoodListByUserID(int id) {
+    public List<PrivateFood> getPrivateFoodListByUserID(int id) {
         try (FoodDao dao = daoFactory.createFoodDao()) {
             return dao.findByUserID(id);
         }
@@ -50,5 +45,23 @@ public class FoodService {
         try (FoodDao dao = daoFactory.createFoodDao()) {
             return dao.findById(id);
         }
+    }
+    public void save(Food food){
+        try (FoodDao dao = daoFactory.createFoodDao()){
+            dao.create(food);
+        }
+    }
+    public void savePrivate(PrivateFood food){
+        try (FoodDao dao = daoFactory.createFoodDao()){
+            dao.savePrivate(food);
+        }
+    }
+    public void countAllCalories(FoodCountMapDTO dto){
+        dto.setCalories(dto.getMap().keySet().stream()
+                .mapToInt(a->(int)((a.getCarbohydrate()*4
+                        + a.getFats()*9
+                        + a.getProtein()*4)
+                        * dto.getMap().get(a)))
+                .sum());
     }
 }
