@@ -11,8 +11,6 @@ public class Meal {
     private int allCalories;
     private Map<Food, Integer> foodMap;
 
-
-
     public Map<Food, Integer> getFoodMap() {
         return foodMap;
     }

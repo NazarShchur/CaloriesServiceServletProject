@@ -31,20 +31,17 @@ public class AuthFilter implements Filter {
         String PATHINFO = Optional.ofNullable(req.getPathInfo()).orElse("");
         if (SecurityService.isUserLogged(req)
                 && (PATHINFO.equals(PageRoutes.LOGIN) || PATHINFO.equals(PageRoutes.REGISTRATION))) {
-            System.out.println("Redirecting to " + PageRoutes.USER_PAGE);
             resp.sendRedirect(req.getServletPath() + PageRoutes.USER_PAGE);
             return;
         }
         if (SecurityService.isPageSecured(req)) {
-            if (user != null) {//todo optional
+            if (SecurityService.isUserLogged(req)) {
                 if (SecurityService.hasPermission(req, user)) {
                     chain.doFilter(request, response);
                 } else {
-                    System.out.println("Redirecting to " + PageRoutes.ACCESS_DENIED);//todo remove sout
                     resp.sendRedirect(req.getServletPath() + PageRoutes.ACCESS_DENIED);
                 }
             } else {
-                System.out.println("Redirecting to " + PageRoutes.LOGIN);
                 resp.sendRedirect(req.getServletPath() + PageRoutes.LOGIN);
             }
         } else {

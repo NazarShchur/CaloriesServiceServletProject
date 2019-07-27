@@ -53,4 +53,6 @@ public class MealService {
         return getAllCalories(getTodayMeals(findMealsByUserId(userService.getCurrentUser(request).getId())));
     }
 
+
+
 }

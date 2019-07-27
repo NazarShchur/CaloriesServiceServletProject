@@ -13,7 +13,7 @@
         }
     </style>
     <h1 class="col-lg-12"><fmt:message key="all.meal"/></h1>
-    <c:forEach items="${sessionScope.allmeals}" var="meal">
+    <c:forEach items="${requestScope.mealsList}" var="meal">
         <div class="col-lg-12 align-content-center">
         <table class="table-bordered">
             <tr>
@@ -71,4 +71,9 @@
         </table>
         </div>
     </c:forEach>
+    <ul>
+    <c:forEach var="page" begin="1" end="${requestScope.pageCount}">
+            <li class="page-item"><a href="?page=${page}">${page}</a></li>
+    </c:forEach>
+    </ul>
 </w:wrapper>

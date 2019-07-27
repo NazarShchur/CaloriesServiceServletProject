@@ -32,7 +32,6 @@ public class JDBCUserDao implements UserDao {
             ps.setString(1, user.getLogin());
             ps.setString(2, user.getPassword());
             ResultSet rs = ps.executeQuery();
-            System.out.println("Executed " + UserSQL.FINDBYLOGINANDPASSWORD);
             if (rs.next()) {
                 found = userMapper.getEntity(rs);
                 found.setRoles(findUserRolesByID(found.getId()));
@@ -49,7 +48,6 @@ public class JDBCUserDao implements UserDao {
         try (PreparedStatement ps = connection.prepareStatement(UserSQL.FINDROLESBYID)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            System.out.println("Executed " + UserSQL.FINDROLESBYID);
             while (rs.next()) {
                 roleSet.add(Role.valueOf(rs.getString(UserRolesFields.ROLE)));
             }
