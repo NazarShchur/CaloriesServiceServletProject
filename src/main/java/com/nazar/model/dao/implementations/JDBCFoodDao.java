@@ -38,7 +38,7 @@ public class JDBCFoodDao implements FoodDao {
     public Food findById(int id) {
         Mapper<Food> mapper = new FoodMapper();
         Food found = new Food();
-        try(PreparedStatement ps = connection.prepareStatement(FoodSQL.FINDBYID)){
+        try(PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_BY_ID)){
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
@@ -81,7 +81,7 @@ public class JDBCFoodDao implements FoodDao {
     }
 
     @Override
-    public List<Food> findByIsPublic(boolean isPublic){
+    public List<Food> findPublicFood(){
         Mapper<Food> mapper = new FoodMapper();
         List<Food> foodList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_PUBLIC)) {
@@ -89,7 +89,6 @@ public class JDBCFoodDao implements FoodDao {
             while (rs.next()) {
                 foodList.add(mapper.getEntity(rs));
             }
-            System.out.println("EXECUTED " + FoodSQL.FIND_PUBLIC + " and got " + foodList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -122,6 +121,30 @@ public class JDBCFoodDao implements FoodDao {
             ps.setString(5, food.getName());
             ps.executeUpdate();
         }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public List<PrivateFood> findPrivate(){
+        List<PrivateFood> foodList = new ArrayList<>();
+        Mapper<PrivateFood> foodMapper = new PrivateFoodMapper();
+        try(PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_PRIVATE)) {
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                foodList.add(foodMapper.getEntity(rs));
+            }
+            System.out.println("returned + " + foodList);
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return foodList;
+    }
+    @Override
+    public void updateToPublic(int id){
+        try(PreparedStatement ps = connection.prepareStatement(FoodSQL.UPDATE_TO_PUBLIC)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e){
             throw new RuntimeException(e);
         }
     }

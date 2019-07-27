@@ -5,10 +5,17 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
 <%@taglib prefix="w" tagdir="/WEB-INF/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <w:wrapper>
     <div class="col-lg-12">
         <h1 class="uname"> <c:out value="${sessionScope.user.login}"/></h1>
+        <c:if test="${sessionScope.isAdmin == true}">
+            <h1>
+                <a href="${pageContext.request.contextPath}/app/admin">
+                    <fmt:message key="admin.page"/>
+                </a>
+            </h1>
+        </c:if>
     </div>
     <div class="col-lg-5 uphoto">
 
@@ -38,6 +45,9 @@
             </li>
             <li>
                 <fmt:message key="today.consumed"/> : <c:out value="${sessionScope.todayEaten}"/>
+                <c:if test="${sessionScope.isNormExceeded == true}">
+                    !
+                </c:if>
             </li>
         </ul>
     </div>

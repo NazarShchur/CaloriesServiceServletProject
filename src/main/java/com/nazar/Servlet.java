@@ -1,9 +1,11 @@
 package com.nazar;
 
 import com.nazar.controller.command.*;
+import com.nazar.controller.command.admin.AdminCommand;
+import com.nazar.controller.command.admin.MakeFoodPublicCommand;
 import com.nazar.controller.command.common.*;
 import com.nazar.controller.routes.PageRoutes;
-import com.nazar.controller.command.user.LogOutCommand;
+import com.nazar.controller.command.common.LogOutCommand;
 import com.nazar.service.FoodService;
 import com.nazar.service.MealService;
 import com.nazar.service.UserService;
@@ -53,6 +55,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
                 new AddFoodCommand());
         commands.put("userpage/addfood/savefood",
                 new SaveFoodCommand(new FoodService()));
+        commands.put("admin",
+                new AdminCommand(new FoodService()));
+        commands.put("admin/makefoodpublic",
+                new MakeFoodPublicCommand(new FoodService()));
 
     }
 
@@ -74,11 +80,8 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Command command = commands.getOrDefault(path, new MainCommand());
         String page = command.execute(request);
         if (page.contains(PageRoutes.REDIRECT)) {
-            System.out.println("Redirecting to " + page);//todo remove 2
             response.sendRedirect(page.replace(PageRoutes.REDIRECT, ""));
-
         } else {
-            System.out.println("Forwarding to " + page);
             request.getRequestDispatcher(request.getContextPath() + page).forward(request, response);
         }
     }

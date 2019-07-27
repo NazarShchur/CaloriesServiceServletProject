@@ -14,5 +14,7 @@ public interface PageRoutes {
     String DELETE_FOOD_FROM_MEAL = NEW_MEAL + "/deletefoodfrommeal";
     String SAVE_MEAL = NEW_MEAL + "/savemeal";
     String SAVE_FOOD = ADD_FOOD + "/savefood";
+    String ADMIN = "/admin";
+    String MAKE_FOOD_PUBLIC = ADMIN + "/makefoodpublic";
 
 }

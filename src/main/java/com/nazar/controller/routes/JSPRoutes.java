@@ -9,4 +9,6 @@ public interface JSPRoutes {
     String NEW_MEAL = "/WEB-INF/jsp/newmeal.jsp";
     String ALL_MEALS = "/WEB-INF/jsp/allmeals.jsp";
     String ADD_FOOD = "/WEB-INF/jsp/addfood.jsp";
+    String ADMIN = "/WEB-INF/jsp/admin.jsp";
+
 }

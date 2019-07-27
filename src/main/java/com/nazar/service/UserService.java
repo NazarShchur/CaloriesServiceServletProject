@@ -1,14 +1,11 @@
 package com.nazar.service;
 
 import com.nazar.model.dao.DaoFactory;
-import com.nazar.model.dao.interfaces.MealDao;
 import com.nazar.model.dao.interfaces.UserDao;
 import com.nazar.model.dto.userdto.LoginUserDTO;
-import com.nazar.model.entity.Meal;
 import com.nazar.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 
 public class UserService {

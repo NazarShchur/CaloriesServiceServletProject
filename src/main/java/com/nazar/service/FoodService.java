@@ -12,10 +12,20 @@ import java.util.stream.Collectors;
 
 public class FoodService {
     private DaoFactory daoFactory = DaoFactory.getInstance();
+    public List<PrivateFood> findPrivate(){
+        try(FoodDao dao = daoFactory.createFoodDao()) {
+            return dao.findPrivate();
+        }
+    }
 
-    public List<Food> getFoodListByIsPublic(boolean isPublic) {
+    public void updateToPublic(int id){
+        try(FoodDao dao = daoFactory.createFoodDao()) {
+            dao.updateToPublic(id);
+        }
+    }
+    public List<Food> getPublicFoodList() {
         try (FoodDao dao = daoFactory.createFoodDao()) {
-            return dao.findByIsPublic(isPublic);
+            return dao.findPublicFood();
         }
     }
 
@@ -28,7 +38,7 @@ public class FoodService {
     public List<Food> getFoodListForUser(int id) {
         List<Food> foodList = new ArrayList<>();
         foodList.addAll(getPrivateFoodListByUserID(id));
-        foodList.addAll(getFoodListByIsPublic(true));
+        foodList.addAll(getPublicFoodList());
         return foodList.stream()
                 .distinct()
                 .sorted(Comparator.comparing(Food::getName))

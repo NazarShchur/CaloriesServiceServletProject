@@ -5,6 +5,7 @@
 <%@taglib prefix="w" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
+
 <w:wrapper>
     <style>
         td{

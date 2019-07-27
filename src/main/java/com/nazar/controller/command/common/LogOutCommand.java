@@ -1,4 +1,4 @@
-package com.nazar.controller.command.user;
+package com.nazar.controller.command.common;
 
 import com.nazar.controller.command.Command;
 import com.nazar.controller.routes.PageRoutes;

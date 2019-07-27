@@ -68,6 +68,18 @@ public class Food {
         return Objects.hash(id, name, fats, protein, carbohydrate);
     }
 
+    @Override
+    public String toString() {
+        return "Food{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", fats=" + fats +
+                ", protein=" + protein +
+                ", carbohydrate=" + carbohydrate +
+                '}';
+    }
+
+
     public static Builder builder(){
         return new Food().new Builder();
     }

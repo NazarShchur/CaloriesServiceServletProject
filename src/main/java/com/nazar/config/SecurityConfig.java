@@ -21,8 +21,10 @@ public class SecurityConfig {
                 PageRoutes.SAVE_MEAL,
                 PageRoutes.SAVE_FOOD));
 
-        List<String> adminPagesList = new ArrayList<>();
-        securedPages.put(Role.ADMIN, adminPagesList);
+        securedPages.put(Role.ADMIN, Arrays.asList(
+                PageRoutes.ADMIN,
+                PageRoutes.MAKE_FOOD_PUBLIC
+        ));
     }
 
     public static List<String> getSecuredPagesForRole(Role role){

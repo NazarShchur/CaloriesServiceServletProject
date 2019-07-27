@@ -5,6 +5,7 @@
 <%@taglib prefix="w" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
+
 <w:wrapper>
 <h1 class="col-lg-12 text-center">
     <fmt:message key="add.food"/>

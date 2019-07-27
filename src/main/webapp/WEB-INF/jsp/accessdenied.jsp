@@ -5,6 +5,7 @@
 <%@ page isELIgnored="false"%>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="${bundle}"/>
+
 <w:wrapper>
     <h1><fmt:message key="access.denied"/></h1>
 </w:wrapper>
