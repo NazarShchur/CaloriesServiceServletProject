@@ -6,7 +6,6 @@ public interface PageRoutes {
     String USER_PAGE = "/userpage";
     String LOGIN = "/login";
     String REGISTRATION = "/registration";
-    String ACCESS_DENIED = "/accessdenied";
     String NEW_MEAL = USER_PAGE + "/newmeal";
     String ADD_FOOD = USER_PAGE + "/addfood";
     String ADD_FOOD_TO_MEAL = NEW_MEAL + "/addfoodtomeal";
@@ -16,5 +15,7 @@ public interface PageRoutes {
     String SAVE_FOOD = ADD_FOOD + "/savefood";
     String ADMIN = "/admin";
     String MAKE_FOOD_PUBLIC = ADMIN + "/makefoodpublic";
+    String AUTH = "/auth";
+    String LOGOUT = "/logout";
 
 }

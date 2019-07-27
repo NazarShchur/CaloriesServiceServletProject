@@ -11,7 +11,14 @@ public class SecurityConfig {
         init();
     }
     private static void init(){
+        securedPages.put(Role.GUEST, Arrays.asList(
+                PageRoutes.MAIN,
+                PageRoutes.LOGIN,
+                PageRoutes.REGISTRATION,
+                PageRoutes.AUTH
+                ));
         securedPages.put(Role.USER, Arrays.asList(
+                PageRoutes.MAIN,
                 PageRoutes.USER_PAGE,
                 PageRoutes.NEW_MEAL,
                 PageRoutes.ADD_FOOD,
@@ -19,7 +26,8 @@ public class SecurityConfig {
                 PageRoutes.ALL_MEALS,
                 PageRoutes.DELETE_FOOD_FROM_MEAL,
                 PageRoutes.SAVE_MEAL,
-                PageRoutes.SAVE_FOOD));
+                PageRoutes.SAVE_FOOD,
+                PageRoutes.LOGOUT));
 
         securedPages.put(Role.ADMIN, Arrays.asList(
                 PageRoutes.ADMIN,
@@ -28,6 +36,7 @@ public class SecurityConfig {
     }
 
     public static List<String> getSecuredPagesForRole(Role role){
+        System.out.println(securedPages.get(role));
         return securedPages.get(role);
     }
 

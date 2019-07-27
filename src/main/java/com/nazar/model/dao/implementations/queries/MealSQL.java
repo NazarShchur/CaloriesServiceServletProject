@@ -20,7 +20,7 @@ public interface MealSQL{
             + "`) VALUES ((?), (?), (?))";
     String FIND_BY_USER_ID = "SELECT * FROM `"
             + MealFields.TABLE_NAME
-            + "` WHERE `" + MealFields.USER_ID + "`=(?)";
+            + "` WHERE `" + MealFields.USER_ID + "`=(?) ORDER BY `" + MealFields.ADD_TIME + "` DESC" ;
     String GET_FOOD_FROM_MEAL = "SELECT * FROM `"
             + FoodFields.TABLE_NAME + "`JOIN `"
             + MealFoodFields.TABLE_NAME + "` ON `"
