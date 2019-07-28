@@ -133,7 +133,6 @@ public class JDBCFoodDao implements FoodDao {
             while(rs.next()){
                 foodList.add(foodMapper.getEntity(rs));
             }
-            System.out.println("returned + " + foodList);
         } catch (SQLException e){
             throw new RuntimeException(e);
         }

@@ -16,7 +16,7 @@ public class SecurityConfig {
                 PageRoutes.LOGIN,
                 PageRoutes.REGISTRATION,
                 PageRoutes.AUTH
-                ));
+        ));
         securedPages.put(Role.USER, Arrays.asList(
                 PageRoutes.MAIN,
                 PageRoutes.USER_PAGE,
@@ -27,7 +27,8 @@ public class SecurityConfig {
                 PageRoutes.DELETE_FOOD_FROM_MEAL,
                 PageRoutes.SAVE_MEAL,
                 PageRoutes.SAVE_FOOD,
-                PageRoutes.LOGOUT));
+                PageRoutes.LOGOUT
+        ));
 
         securedPages.put(Role.ADMIN, Arrays.asList(
                 PageRoutes.ADMIN,
@@ -36,7 +37,6 @@ public class SecurityConfig {
     }
 
     public static List<String> getSecuredPagesForRole(Role role){
-        System.out.println(securedPages.get(role));
         return securedPages.get(role);
     }
 

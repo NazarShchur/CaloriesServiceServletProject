@@ -12,7 +12,7 @@
             padding: 10px;
         }
     </style>
-    <h1>
+    <h1 class="col-lg-12 text-center">
         <fmt:message key="food.added.by.users"/>
     </h1>
     <table class="table-bordered">

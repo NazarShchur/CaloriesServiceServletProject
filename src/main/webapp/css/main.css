@@ -85,9 +85,37 @@ body{
 .regform label{
     text-align: center;
 }
+.pagin{
+    padding: 50px;
+    display: flex;
+    margin: auto;
+}
+.pagin li{
+    display: inline-block;
+}
+.pagin a{
+    text-decoration: none;
+    padding: 10px 10px 10px 10px;
+    font-size: 24px;
+    color: black;
+}
 li{
     list-style-type: none;
 }
 input[type = number]{
     -webkit-appearance: none;
+}
+.mealtable{
+    margin-bottom: 50px;
+}
+.err{
+    width: 100%;
+}
+.err_code{
+    text-align: center;
+    font-size: 135px;
+}
+.err_mess{
+    text-align: center;
+    font-size: 75px;
 }

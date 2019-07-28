@@ -15,7 +15,7 @@
     <h1 class="col-lg-12"><fmt:message key="all.meal"/></h1>
     <c:forEach items="${requestScope.mealsList}" var="meal">
         <div class="col-lg-12 align-content-center">
-        <table class="table-bordered">
+        <table class="table-bordered mealtable">
             <tr>
                 <td>
                     <fmt:message key="meal.description"/>
@@ -71,9 +71,9 @@
         </table>
         </div>
     </c:forEach>
-    <ul>
+    <ul class="pagin">
     <c:forEach var="page" begin="1" end="${requestScope.pageCount}">
-            <li class="page-item"><a href="?page=${page}">${page}</a></li>
+            <li><a href="?page=${page}">${page}</a></li>
     </c:forEach>
     </ul>
 </w:wrapper>
