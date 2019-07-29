@@ -17,5 +17,6 @@ public interface PageRoutes {
     String MAKE_FOOD_PUBLIC = ADMIN + "/makefoodpublic";
     String AUTH = "/auth";
     String LOGOUT = "/logout";
+    String REGISTER = "/register";
 
 }

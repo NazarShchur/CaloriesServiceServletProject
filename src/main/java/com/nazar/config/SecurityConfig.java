@@ -15,6 +15,7 @@ public class SecurityConfig {
                 PageRoutes.MAIN,
                 PageRoutes.LOGIN,
                 PageRoutes.REGISTRATION,
+                PageRoutes.REGISTER,
                 PageRoutes.AUTH
         ));
         securedPages.put(Role.USER, Arrays.asList(

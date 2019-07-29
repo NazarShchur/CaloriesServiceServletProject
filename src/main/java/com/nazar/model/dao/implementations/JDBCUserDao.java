@@ -65,7 +65,7 @@ public class JDBCUserDao implements UserDao {
             ps.setInt(2, userID);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);//todo ???
+            throw new RuntimeException(e);
         }
     }
 
@@ -109,7 +109,7 @@ public class JDBCUserDao implements UserDao {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            throw new NotUniqueLoginException(e);
+            throw new NotUniqueLoginException(entity.getLogin());
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -123,7 +123,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public User findById(int id) {
         return null;
-    }
+    }//todo unsupported method exception
 
     @Override
     public List<User> findAll() {

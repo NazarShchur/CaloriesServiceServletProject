@@ -9,7 +9,8 @@ import com.nazar.model.myexceptions.UnacceptableDataInputException;
 public class RegistrationService {
     private final String AND ="&";
     private final String EQ = "=";
-    private final String REGEX = "^[a-z]{1,20}$"; //todo different REGEXES
+    private final String LOGINREGEX = "^[a-zA-Z0-9]{3,20}$";
+    private final String PASSREGEX = "^[a-zA-Z0-9]{3,20}$";
     private final String CHECKLOGIN = "checkLogin";
     private final String CHECKPASSWORD = "checkPassword";
     private final String CHECKAGE = "checkAge";
@@ -26,10 +27,10 @@ public class RegistrationService {
     private final int MAXAGE = 120;
     private final int MINAGE = 1;
     private boolean isLoginCorrect(String login){
-        return login.matches(REGEX);
+        return login.matches(LOGINREGEX);
     }
     private boolean isPasswordCorrect(String password){
-        return password.matches(REGEX);
+        return password.matches(PASSREGEX);
     }
     private boolean isHeightCorrect(int height){
         return height >= MINHEIGHT && height <= MAXHEIGHT;
@@ -62,14 +63,14 @@ public class RegistrationService {
             user.setHeight(Integer.parseInt(userDTO.getHeight()));
             user.setWeight(Integer.parseInt(userDTO.getWeight()));
             user.setAge(Integer.parseInt(userDTO.getAge()));
-        } catch (NumberFormatException e){
-            throw new UnacceptableDataInputException();
+        } catch (Exception e){
+            throw new UnacceptableDataInputException(e);
         }
         try {
-            user.setLifeStyle(LifeStyle.valueOf(userDTO.getLifeStyle()));//todo check null
+            user.setLifeStyle(LifeStyle.valueOf(userDTO.getLifeStyle()));
             user.setGender(Gender.valueOf(userDTO.getGender()));
-        } catch (IllegalArgumentException e){
-            throw new UnacceptableDataInputException();
+        } catch (Exception e){
+            throw new UnacceptableDataInputException(e);
         }
         user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());

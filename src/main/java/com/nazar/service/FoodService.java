@@ -2,9 +2,11 @@ package com.nazar.service;
 
 import com.nazar.model.dao.DaoFactory;
 import com.nazar.model.dao.interfaces.FoodDao;
+import com.nazar.model.dto.fooddto.CheckFoodDTO;
 import com.nazar.model.dto.fooddto.FoodCountMapDTO;
 import com.nazar.model.entity.Food;
 import com.nazar.model.entity.PrivateFood;
+import com.nazar.model.myexceptions.UnacceptableDataInputException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -66,12 +68,24 @@ public class FoodService {
             dao.savePrivate(food);
         }
     }
-    public void countAllCalories(FoodCountMapDTO dto){
+    public void countAllCalories(FoodCountMapDTO dto) {
         dto.setCalories(dto.getMap().keySet().stream()
-                .mapToInt(a->(int)((a.getCarbohydrate()*4
-                        + a.getFats()*9
-                        + a.getProtein()*4)
+                .mapToInt(a -> (int) ((a.getCarbohydrate() * 4
+                        + a.getFats() * 9
+                        + a.getProtein() * 4)
                         * dto.getMap().get(a)))
                 .sum());
+    }
+    public PrivateFood checkIsValidDataAndReturnFood(CheckFoodDTO dto) throws UnacceptableDataInputException{
+        PrivateFood food = new PrivateFood();
+        try {
+            food.setCarbohydrate(Double.parseDouble(dto.getCarbohydrate()));
+            food.setFats(Double.parseDouble(dto.getFats()));
+            food.setProtein(Double.parseDouble(dto.getProtein()));
+        } catch (Exception e){
+            throw new UnacceptableDataInputException(e);
+        }
+        food.setName(dto.getName());
+        return food;
     }
 }

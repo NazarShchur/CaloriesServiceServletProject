@@ -77,7 +77,11 @@ public class JDBCFoodDao implements FoodDao {
 
     @Override
     public void close() {
-
+        try {
+            connection.close();
+        } catch (SQLException e){
+            throw new RuntimeException();
+        }
     }
 
     @Override

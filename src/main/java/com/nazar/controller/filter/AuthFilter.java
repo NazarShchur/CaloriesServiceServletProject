@@ -36,10 +36,8 @@ public class AuthFilter implements Filter {
                         .build());
 
         if (SecurityService.hasPermission(req, user)) {
-            System.out.println(" if " + req.getPathInfo());
             chain.doFilter(request, response);
         } else {
-            System.out.println(" else " + req.getPathInfo());
             resp.sendRedirect(req.getServletPath() + PageRoutes.MAIN);
         }
     }

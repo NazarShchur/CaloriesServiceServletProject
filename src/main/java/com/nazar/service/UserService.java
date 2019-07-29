@@ -16,7 +16,6 @@ public class UserService {
         try (UserDao dao = daoFactory.createUserDao()) {
             dao.create(user);
         }
-        System.out.println("saved " + user);
     }
 
     public User auth(LoginUserDTO user) {

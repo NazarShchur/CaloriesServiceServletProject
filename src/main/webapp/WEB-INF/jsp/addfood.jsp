@@ -10,6 +10,9 @@
 <h1 class="col-lg-12 text-center">
     <fmt:message key="add.food"/>
 </h1>
+    <c:if test="${param.unacceptableData == true}">
+        <p><fmt:message key="unacceptableData"/></p>
+    </c:if>
     <form class="col-lg-12" method="post" action="${pageContext.request.contextPath}/app/userpage/addfood/savefood">
        <label>
            <input type="text" placeholder="<fmt:message key="food.name"/>" name="foodName">

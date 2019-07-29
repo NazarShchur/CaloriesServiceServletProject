@@ -22,7 +22,7 @@ public interface UserSQL {
             + "`=(?)" + " AND `" + UserFields.PASSWORD
             + "`=(?)";
 
-    String FINDROLESBYID = "SELECT `" + UserRolesFields.ROLE //todo merge
+    String FINDROLESBYID = "SELECT `" + UserRolesFields.ROLE
             + "` FROM `" + UserRolesFields.TABLE_NAME
             + "` WHERE `" + UserRolesFields.USER_ID + "`=(?)";
 

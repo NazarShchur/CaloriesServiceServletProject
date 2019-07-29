@@ -52,13 +52,13 @@
         </ul>
     </div>
     <div class="profile_act col-lg-12 row">
-        <a href="${pageContext.request.contextPath}/app/userpage/newmeal" class="col-lg-4 profile_btn">
+        <a href="${pageContext.request.contextPath}/app/userpage/newmeal" class="col-lg-4 addmeal profile_btn">
             <fmt:message key="add.meal"/>
         </a>
-        <a href="${pageContext.request.contextPath}/app/userpage/addfood" class="col-lg-4 profile_btn">
+        <a href="${pageContext.request.contextPath}/app/userpage/addfood" class="col-lg-4 addfood profile_btn">
             <fmt:message key="add.food"/>
         </a>
-        <a href="${pageContext.request.contextPath}/app/userpage/allmeals" class="col-lg-4 profile_btn">
+        <a href="${pageContext.request.contextPath}/app/userpage/allmeals" class="col-lg-4 allmeals profile_btn">
             <fmt:message key="all.meal"/>
         </a>
     </div>
