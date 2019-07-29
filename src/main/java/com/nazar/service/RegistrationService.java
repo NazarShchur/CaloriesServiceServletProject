@@ -5,6 +5,7 @@ import com.nazar.model.dto.userdto.RegistrationUserDTO;
 import com.nazar.model.entity.Gender;
 import com.nazar.model.entity.LifeStyle;
 import com.nazar.model.myexceptions.UnacceptableDataInputException;
+import org.apache.log4j.Logger;
 
 public class RegistrationService {
     private final String AND ="&";
@@ -26,6 +27,10 @@ public class RegistrationService {
     private final int MAXWEIGHT = 600;
     private final int MAXAGE = 120;
     private final int MINAGE = 1;
+
+    private final static Logger logger = Logger.getLogger(RegistrationService.class);
+
+
     private boolean isLoginCorrect(String login){
         return login.matches(LOGINREGEX);
     }
@@ -43,6 +48,7 @@ public class RegistrationService {
     }
 
     public boolean checkIsNotCorrectData(RegistrationUserDTO user){
+        logger.debug("Checking is data correct");
         return !(isLoginCorrect(user.getLogin())
                 && isPasswordCorrect(user.getPassword())
                 && isHeightCorrect(user.getHeight())
@@ -50,6 +56,7 @@ public class RegistrationService {
                 && isAgeCorrect(user.getAge()));
     }
     public String getURLParams(RegistrationUserDTO user){
+        logger.debug("Returning URL Params");
         return "?"
                 + CHECKLOGIN+ EQ + isLoginCorrect(user.getLogin()) + AND + LOGIN + EQ + user.getLogin()
                 + AND + CHECKPASSWORD + EQ + isPasswordCorrect(user.getPassword())
@@ -58,18 +65,16 @@ public class RegistrationService {
                 + AND + CHECKAGE + EQ + isAgeCorrect(user.getAge()) + AND + AGE + EQ + user.getAge();
     }
     public RegistrationUserDTO checkIsValidDataAndReturnValidDTO(CheckUserDTO userDTO) throws UnacceptableDataInputException {
+        logger.debug("Checking is data valid");
         RegistrationUserDTO user = new RegistrationUserDTO();
         try {
             user.setHeight(Integer.parseInt(userDTO.getHeight()));
             user.setWeight(Integer.parseInt(userDTO.getWeight()));
             user.setAge(Integer.parseInt(userDTO.getAge()));
-        } catch (Exception e){
-            throw new UnacceptableDataInputException(e);
-        }
-        try {
             user.setLifeStyle(LifeStyle.valueOf(userDTO.getLifeStyle()));
             user.setGender(Gender.valueOf(userDTO.getGender()));
         } catch (Exception e){
+            logger.error("Invalid data input", e);
             throw new UnacceptableDataInputException(e);
         }
         user.setLogin(userDTO.getLogin());

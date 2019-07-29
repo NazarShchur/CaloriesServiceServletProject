@@ -16,23 +16,19 @@ public interface UserSQL {
             + UserFields.LIFE_STYLE
             + "`) VALUES ((?), (?), (?), (?), (?), (?), (?))";
 
-    String FINDBYLOGINANDPASSWORD = "SELECT * FROM `"
+    String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM `"
             + UserFields.TABLE_NAME
             + "` WHERE `" + UserFields.LOGIN
             + "`=(?)" + " AND `" + UserFields.PASSWORD
             + "`=(?)";
 
-    String FINDROLESBYID = "SELECT `" + UserRolesFields.ROLE
+    String FIND_ROLES_BY_ID = "SELECT `" + UserRolesFields.ROLE
             + "` FROM `" + UserRolesFields.TABLE_NAME
             + "` WHERE `" + UserRolesFields.USER_ID + "`=(?)";
 
-    String ADDUSERROLE = "INSERT INTO `"
+    String ADD_USER_ROLE = "INSERT INTO `"
             + UserRolesFields.TABLE_NAME + "`(`"
             + UserRolesFields.ROLE + "`, `"
             + UserRolesFields.USER_ID
             + "`) VALUES ((?), (?))";
-    String FINDIDBYLOGIN = "SELECT `" + UserFields.ID
-            + "` FROM `" + UserFields.TABLE_NAME
-            + "` WHERE `" + UserFields.LOGIN + "`=(?)";
-
 }

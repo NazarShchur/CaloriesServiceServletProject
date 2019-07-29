@@ -10,6 +10,4 @@ import java.util.Set;
 public interface UserDao extends CRUDDao<User> {
     User findUserByLoginAndPassword(LoginUserDTO user);
     Set<Role> findUserRolesByID(int id);
-    void addUserRole(int userID, Role role);
-    int findIdByLogin(String login);
 }

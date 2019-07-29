@@ -10,6 +10,7 @@ import com.nazar.model.myexceptions.NotUniqueLoginException;
 import com.nazar.model.myexceptions.UnacceptableDataInputException;
 import com.nazar.service.RegistrationService;
 import com.nazar.service.UserService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +21,7 @@ public class RegisterCommand implements Command {
     private RegistrationService regisrationService = new RegistrationService();
     private UserService userService = new UserService();
 
+    private final static Logger logger = Logger.getLogger(RegisterCommand.class);
     @Override
     public String execute(HttpServletRequest request) {
         CheckUserDTO userDTO = new CheckUserDTO();
@@ -30,13 +32,16 @@ public class RegisterCommand implements Command {
         userDTO.setGender(request.getParameter("gender"));
         userDTO.setWeight(request.getParameter("weight"));
         userDTO.setHeight(request.getParameter("height"));
+        logger.info("Trying to register user " + userDTO);
         RegistrationUserDTO validUser;
         try {
             validUser = regisrationService.checkIsValidDataAndReturnValidDTO(userDTO);
         } catch (UnacceptableDataInputException e){
+            logger.warn("User input invalid data");
             return JSPRoutes.REGISTRATION + UNACCAPTABLE_DATA;
         }
         if(regisrationService.checkIsNotCorrectData(validUser)){
+            logger.warn("User input incorrect data");
             return JSPRoutes.REGISTRATION + regisrationService.getURLParams(validUser);
         }
         try {
@@ -50,6 +55,7 @@ public class RegisterCommand implements Command {
                     .gender(validUser.getGender())
                     .build());
         } catch (NotUniqueLoginException e) {
+            logger.info("User try to register occupied login: " + e.getLoginData());
             return JSPRoutes.REGISTRATION + NOT_UNIQUE_LOGIN;
         }
         return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.MAIN;

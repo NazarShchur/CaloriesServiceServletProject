@@ -80,4 +80,17 @@ public class RegistrationUserDTO {
     public void setLifeStyle(LifeStyle lifeStyle) {
         this.lifeStyle = lifeStyle;
     }
+
+    @Override
+    public String toString() {
+        return "RegistrationUserDTO{" +
+                "login='" + login + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", gender=" + gender +
+                ", lifeStyle=" + lifeStyle +
+                ", roles=" + roles +
+                '}';
+    }
 }

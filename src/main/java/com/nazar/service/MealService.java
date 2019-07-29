@@ -4,6 +4,8 @@ import com.nazar.model.dao.DaoFactory;
 import com.nazar.model.dao.interfaces.MealDao;
 import com.nazar.model.dto.fooddto.FoodCountMapDTO;
 import com.nazar.model.entity.Meal;
+import jdk.nashorn.internal.runtime.logging.Loggable;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -13,11 +15,12 @@ import java.util.stream.Collectors;
 public class MealService {
     private final UserService userService = new UserService();
     private DaoFactory daoFactory = DaoFactory.getInstance();
-
+    private final static Logger logger = Logger.getLogger(MealService.class);
     public void saveNewMeal(Meal meal){
         try(MealDao dao = daoFactory.createMealDao()) {
             dao.create(meal);
         }
+        logger.debug("Saved new meal " + meal);
     }
     public void countAllCalories(Meal meal){
         meal.setAllCalories(getAllCalories(meal));
@@ -37,11 +40,9 @@ public class MealService {
 
     }
     public List<Meal> getTodayMeals(List<Meal> meals){
-        List<Meal> meals1;
-        meals1= meals.stream()
+        return meals.stream()
                 .filter(a->a.getAddTime().isEqual(LocalDate.now()))
                 .collect(Collectors.toList());
-        return meals1;
     }
 
     public int getAllCalories(List<Meal> meals){

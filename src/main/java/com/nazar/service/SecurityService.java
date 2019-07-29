@@ -3,6 +3,7 @@ import com.nazar.config.SecurityConfig;
 import com.nazar.controller.routes.PageRoutes;
 import com.nazar.model.entity.Role;
 import com.nazar.model.entity.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;

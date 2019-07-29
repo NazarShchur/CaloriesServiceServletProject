@@ -119,12 +119,13 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", login=" + login +
-                ", password=" + password +
                 ", age=" + age +
                 ", height=" + height +
                 ", weight=" + weight +
                 ", gender=" + gender +
                 ", roles=" + roles +
+                ", dailyCalories=" + dailyCalories +
+                ", todayCalories=" + todayCalories +
                 ", lifeStyle=" + lifeStyle +
                 '}';
     }

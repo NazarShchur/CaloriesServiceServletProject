@@ -9,6 +9,7 @@ import com.nazar.controller.routes.PageRoutes;
 import com.nazar.service.FoodService;
 import com.nazar.service.MealService;
 import com.nazar.service.UserService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,9 +20,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+
 public class Servlet extends javax.servlet.http.HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
-
+    private final Logger logger = Logger.getLogger(Servlet.class);
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
@@ -78,8 +80,10 @@ public class Servlet extends javax.servlet.http.HttpServlet {
         Command command = commands.getOrDefault(path, new MainCommand());
         String page = command.execute(request);
         if (page.contains(PageRoutes.REDIRECT)) {
+            logger.debug("Redirecting to " + page);
             response.sendRedirect(page.replace(PageRoutes.REDIRECT, ""));
         } else {
+            logger.debug("Forwarding to " + page);
             request.getRequestDispatcher(request.getContextPath() + page).forward(request, response);
         }
     }

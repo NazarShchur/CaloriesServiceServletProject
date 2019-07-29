@@ -6,6 +6,7 @@ import com.nazar.model.dao.mapper.implementations.FoodMapper;
 import com.nazar.model.dao.mapper.implementations.PrivateFoodMapper;
 import com.nazar.model.entity.Food;
 import com.nazar.model.entity.PrivateFood;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,8 @@ import java.util.List;
 
 public class JDBCFoodDao implements FoodDao {
     private Connection connection;
+
+    private final static Logger logger = Logger.getLogger(JDBCFoodDao.class);
 
     public JDBCFoodDao(Connection connection) {
         this.connection = connection;
@@ -28,8 +31,10 @@ public class JDBCFoodDao implements FoodDao {
             ps.setDouble(2, entity.getFats());
             ps.setDouble(3, entity.getProtein());
             ps.setString(4, entity.getName());
+            logger.debug("Executing SQL query:" + FoodSQL.SAVE + " for " + entity);
             ps.executeUpdate();
         }catch (SQLException e){
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
     }
@@ -40,11 +45,13 @@ public class JDBCFoodDao implements FoodDao {
         Food found = new Food();
         try(PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_BY_ID)){
             ps.setInt(1, id);
+            logger.debug("Executing SQL query:" + FoodSQL.FIND_BY_ID + " {" + id + "}");
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 found = mapper.getEntity(rs);
             }
         } catch (SQLException e) {
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
         return found;
@@ -55,11 +62,13 @@ public class JDBCFoodDao implements FoodDao {
         Mapper<Food> mapper = new FoodMapper();
         List<Food> foodList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_ALL)) {
+            logger.debug("Executing SQL query:" + FoodSQL.FIND_ALL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 foodList.add(mapper.getEntity(rs));
             }
         } catch (SQLException e) {
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
         return foodList;
@@ -67,19 +76,21 @@ public class JDBCFoodDao implements FoodDao {
 
     @Override
     public void update(Food entity) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void delete(int id) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void close() {
+        logger.debug("Closing connection");
         try {
             connection.close();
         } catch (SQLException e){
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException();
         }
     }
@@ -89,11 +100,13 @@ public class JDBCFoodDao implements FoodDao {
         Mapper<Food> mapper = new FoodMapper();
         List<Food> foodList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_PUBLIC)) {
+            logger.debug("Executing SQL query:" + FoodSQL.FIND_PUBLIC);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 foodList.add(mapper.getEntity(rs));
             }
         } catch (SQLException e) {
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
         return foodList;
@@ -105,11 +118,13 @@ public class JDBCFoodDao implements FoodDao {
         List<PrivateFood> foodList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_BY_USER_ID)) {
             ps.setInt(1, id);
+            logger.debug("Executing SQL query:" + FoodSQL.FIND_BY_USER_ID + " {" + id + "}");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 foodList.add(mapper.getEntity(rs));
             }
         } catch (SQLException e) {
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
         return foodList;
@@ -123,8 +138,10 @@ public class JDBCFoodDao implements FoodDao {
             ps.setDouble(3, food.getFats());
             ps.setDouble(4, food.getProtein());
             ps.setString(5, food.getName());
+            logger.debug("Executing SQL query:" + FoodSQL.SAVE_PRIVATE + " for " + food);
             ps.executeUpdate();
         }catch (SQLException e){
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
     }
@@ -133,11 +150,13 @@ public class JDBCFoodDao implements FoodDao {
         List<PrivateFood> foodList = new ArrayList<>();
         Mapper<PrivateFood> foodMapper = new PrivateFoodMapper();
         try(PreparedStatement ps = connection.prepareStatement(FoodSQL.FIND_PRIVATE)) {
+            logger.debug("Executing SQL query:" + FoodSQL.FIND_PRIVATE);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 foodList.add(foodMapper.getEntity(rs));
             }
         } catch (SQLException e){
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
         return foodList;
@@ -146,8 +165,10 @@ public class JDBCFoodDao implements FoodDao {
     public void updateToPublic(int id){
         try(PreparedStatement ps = connection.prepareStatement(FoodSQL.UPDATE_TO_PUBLIC)) {
             ps.setInt(1, id);
+            logger.debug("Executing SQL query:" + FoodSQL.UPDATE_TO_PUBLIC + " {" + id + "}");
             ps.executeUpdate();
         } catch (SQLException e){
+            logger.error("Occurred SQLException", e);
             throw new RuntimeException(e);
         }
     }

@@ -70,4 +70,16 @@ public class CheckUserDTO {
     public void setLifeStyle(String lifeStyle) {
         this.lifeStyle = lifeStyle;
     }
+
+    @Override
+    public String toString() {
+        return "CheckUserDTO{" +
+                "login='" + login + '\'' +
+                ", age='" + age + '\'' +
+                ", height='" + height + '\'' +
+                ", weight='" + weight + '\'' +
+                ", gender='" + gender + '\'' +
+                ", lifeStyle='" + lifeStyle + '\'' +
+                '}';
+    }
 }
