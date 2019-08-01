@@ -44,7 +44,7 @@ public class RegistrationService {
         return weight >= MINWEIGHT && weight <= MAXWEIGHT;
     }
     private boolean isAgeCorrect(int age){
-        return age >= MINAGE && age <= MAXHEIGHT;
+        return age >= MINAGE && age <= MAXAGE;
     }
 
     public boolean checkIsNotCorrectData(RegistrationUserDTO user){

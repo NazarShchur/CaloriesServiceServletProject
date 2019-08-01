@@ -11,7 +11,7 @@ public class SessionListener implements HttpSessionListener {
 
     }
 
-    @Override //todo to do or not to do
+    @Override //todo or not todo
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
 
     }

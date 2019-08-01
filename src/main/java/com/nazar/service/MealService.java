@@ -25,7 +25,7 @@ public class MealService {
     public void countAllCalories(Meal meal){
         meal.setAllCalories(getAllCalories(meal));
     }
-    public int getAllCalories(Meal meal){
+    private int getAllCalories(Meal meal){
         return meal.getFoodMap().keySet().stream()
                 .mapToInt(a->(int)((a.getCarbohydrate()*4
                         + a.getFats()*9
@@ -39,13 +39,13 @@ public class MealService {
         }
 
     }
-    public List<Meal> getTodayMeals(List<Meal> meals){
+    private List<Meal> getTodayMeals(List<Meal> meals){
         return meals.stream()
                 .filter(a->a.getAddTime().isEqual(LocalDate.now()))
                 .collect(Collectors.toList());
     }
 
-    public int getAllCalories(List<Meal> meals){
+    private int getAllCalories(List<Meal> meals){
         return meals.stream()
                 .mapToInt(this::getAllCalories)
                 .sum();
