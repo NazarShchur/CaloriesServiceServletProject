@@ -20,7 +20,7 @@ import java.util.Optional;
 public class AuthFilter implements Filter {
     private final static Logger logger = Logger.getLogger(AuthFilter.class);
     @Override
-    public void init(FilterConfig filterConfig) {//todo 404 500 in spring
+    public void init(FilterConfig filterConfig) {
 
     }
     @Override
