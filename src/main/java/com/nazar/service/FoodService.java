@@ -9,13 +9,20 @@ import com.nazar.model.entity.PrivateFood;
 import com.nazar.model.myexceptions.UnacceptableDataInputException;
 import org.apache.log4j.Logger;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class FoodService {
+    private final String FOOD_ID = "foodID";
+    private final String CURRENT_MAP = "currentMap";
+    private final String COUNT = "count";
+    private final String IS_FOOD_IN_MAP = "isFoodInMap";
+    private final String FOOD_ID_TO_DELETE = "foodIDToDelete";
     private final static Logger logger = Logger.getLogger(FoodService.class);
     private DaoFactory daoFactory = DaoFactory.getInstance();
+
     public List<PrivateFood> findPrivate(){
         try(FoodDao dao = daoFactory.createFoodDao()) {
             return dao.findPrivate();
@@ -76,11 +83,34 @@ public class FoodService {
             food.setCarbohydrate(Double.parseDouble(dto.getCarbohydrate()));
             food.setFats(Double.parseDouble(dto.getFats()));
             food.setProtein(Double.parseDouble(dto.getProtein()));
+            food.setName(dto.getName());
         } catch (Exception e){
             logger.error("Food data is invalid", e);
             throw new UnacceptableDataInputException(e);
         }
-        food.setName(dto.getName());
         return food;
     }
+    public void updateFoodCart(HttpServletRequest request, FoodCountMapDTO map){
+        countAllCalories(map);
+        request.getSession().setAttribute(CURRENT_MAP, map);
+        request.getSession().setAttribute(IS_FOOD_IN_MAP, map.getMap().size() > 0);
+    }
+
+    public void addFoodToCart(HttpServletRequest request){
+        Food addedFood = findByID(Integer.parseInt(request.getParameter(FOOD_ID)));
+        int countOfAddedFood = Integer.parseInt(request.getParameter(COUNT));
+        FoodCountMapDTO currentMap = Optional.ofNullable((FoodCountMapDTO)request.getSession().getAttribute(CURRENT_MAP))
+                .orElse(new FoodCountMapDTO());
+        currentMap.getMap().put(addedFood, countOfAddedFood);
+        updateFoodCart(request, currentMap);
+    }
+
+    public void deleteFoodFromCart(HttpServletRequest request){
+        FoodCountMapDTO currentMap = (FoodCountMapDTO)request.getSession().getAttribute(CURRENT_MAP);
+        Food foodToDeleteFromMeal = findByID(Integer.parseInt(request.getParameter(FOOD_ID_TO_DELETE)));
+        currentMap.getMap().remove(foodToDeleteFromMeal);
+        updateFoodCart(request, currentMap);
+    }
+
+
 }

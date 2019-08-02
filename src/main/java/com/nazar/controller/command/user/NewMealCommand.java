@@ -14,6 +14,7 @@ public class NewMealCommand implements Command {
     private final String AVAILABLE_FOOD = "availableFood";
     private final String CURRENT_MAP = "currentMap";
     private final String IS_FOOD_IN_MAP = "isFoodInMap";
+    private final String USER_ID = "userid";
 
     private FoodService foodService;
 
@@ -23,7 +24,7 @@ public class NewMealCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        int currentUserID = (int) request.getSession().getAttribute("userid");
+        int currentUserID = (int) request.getSession().getAttribute(USER_ID);
         FoodCountMapDTO currentMap = Optional.ofNullable((FoodCountMapDTO) request.getSession().getAttribute(CURRENT_MAP))
                 .orElse(new FoodCountMapDTO());
         List<Food> availableFood = foodService.getAvailableFoodList(currentMap.getMap(), currentUserID);

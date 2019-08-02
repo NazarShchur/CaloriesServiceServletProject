@@ -2,22 +2,25 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-body{
+
+body {
     background-image: url("../img/background.jpg");
     background-attachment: fixed;
     transition: 1s !important;
 }
-.wrapp{
+
+.wrapp {
     background-color: rgba(233, 255, 255, 0.95);
     min-height: 100% !important;
     margin-top: 150px;
     margin-bottom: 200px;
     padding-top: 50px;
     padding-left: 50px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
-.myheader{
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+
+.myheader {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
     background-color: #E9FFFF;
     min-height: 100px;
     position: fixed;
@@ -25,7 +28,8 @@ body{
     width: 100%;
     z-index: 1000;
 }
-.myheader a{
+
+.myheader a {
     color: black;
     text-decoration: none;
     font-size: 28px;
@@ -33,16 +37,19 @@ body{
     min-height: 100px;
     padding-top: 30px;
 }
-.myheader a:hover{
+
+.myheader a:hover {
     background-color: #D1FFFF;
     color: black;
     text-decoration: none;
 }
-.profile_act{
+
+.profile_act {
     margin-top: 60px;
     margin-bottom: 60px;
 }
-.profile_btn{
+
+.profile_btn {
     min-height: 380px !important;
     text-align: center;
     padding-top: 350px;
@@ -54,87 +61,170 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
-.profile_btn:hover{
+
+.profile_btn:hover {
     color: black;
     text-decoration: none;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 500;
 }
-.ustats{
+
+.ustats {
     min-height: 475px !important;
     font-size: 28px;
 }
-.uphoto{
+
+.uphoto {
     min-height: 475px !important;
     background-image: url("../img/user.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
-.myfooter{
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+
+.myfooter {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
     background-color: #E9FFFF;
     min-height: 300px !important;
 }
-.regform{
+
+.regform {
     padding: 0px 200px 0px 200px !important;
 }
-.regform input,.regform select{
+
+.regform input, .regform select {
     height: 35px;
     width: 70%;
     font-size: 20px;
     padding-left: 25px;
 }
-.regform input[type=submit]{
+
+input, select {
+    border-radius: 5px;
+}
+
+input[type=submit], button {
+    border: 0;
+}
+
+.regform input[type=submit] {
+    height: 45px;
     width: 100%;
 }
-.regform div{
+
+.regform div {
     text-align: left;
 }
-.pagin{
+
+.pagin {
     padding: 50px;
     display: flex;
     margin: auto;
 }
-.pagin li{
+
+.pagin li {
     display: inline-block;
 }
-.pagin a{
+
+.pagin a {
     text-decoration: none;
     padding: 10px 10px 10px 10px;
     font-size: 24px;
     color: black;
 }
-li{
+
+li {
     list-style-type: none;
 }
-input[type = number]{
+
+input[type = number] {
     -webkit-appearance: none;
 }
-.mealtable{
+
+.mealtable {
+    margin: auto;
     margin-bottom: 50px;
 }
-.err{
+
+.mealtable td {
+    width: 23%;
+}
+
+.err {
     width: 100%;
 }
-.err_code{
+
+.err_code {
     text-align: center;
     font-size: 135px;
 }
-.err_mess{
+
+.err_mess {
     text-align: center;
     font-size: 75px;
 }
-.regform span{
+
+.regform span {
     font-size: 26px;
     text-align: right;
 }
-.addmeal{
+
+.addmeal {
     background-image: url(../img/addmeal.png);
 }
-.addfood{
+
+.addfood {
     background-image: url(../img/addfood.png);
 }
-.allmeals{
+
+.allmeals {
     background-image: url(../img/allmeals.png);
+}
+
+.wow {
+    font-size: 35px;
+    color: red;
+    animation: spark 0.3s infinite alternate-reverse;
+}
+
+.custom_submit {
+    padding: 5px 10px 5px 10px;
+    background-color: rgba(200, 255, 245, 0.95);
+}
+
+td {
+    padding: 10px;
+}
+
+.add_food_to_meal select {
+    width: 40%;
+    height: 40px;
+}
+
+.add_food_to_meal input {
+    height: 40px;
+}
+
+.add_food_to_meal input[type=submit] {
+    width: 57%;
+    margin-top: 20px;
+}
+
+.main_info img {
+    width: 100%;
+}
+.main_info{
+    margin-bottom: 40px;
+}
+
+@keyframes spark {
+    from {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
 }

@@ -15,19 +15,19 @@
     </c:if>
     <form class="col-lg-12" method="post" action="${pageContext.request.contextPath}/app/userpage/addfood/savefood">
        <label>
-           <input type="text" placeholder="<fmt:message key="food.name"/>" name="foodName">
+           <input type="text" maxlength="30" placeholder="<fmt:message key="food.name"/>" name="foodName" required>
        </label>
         <label>
-            <input type="number" placeholder="<fmt:message key="food.proteins"/>" name="protein">
+            <input type="number" placeholder="<fmt:message key="food.proteins"/>" name="protein" required>
         </label>
         <label>
-            <input type="number" placeholder="<fmt:message key="food.fats"/>" name="fats">
+            <input type="number" placeholder="<fmt:message key="food.fats"/>" name="fats" required>
         </label>
         <label>
-            <input type="number" placeholder="<fmt:message key="food.carbohydrates"/>" name="carbohydrate">
+            <input type="number" placeholder="<fmt:message key="food.carbohydrates"/>" name="carbohydrate" required>
         </label>
         <label>
-            <input type="submit">
+            <input class="custom_submit" type="submit" value="<fmt:message key="add"/>">
         </label>
     </form>
 </w:wrapper>

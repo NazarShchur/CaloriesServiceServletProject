@@ -34,7 +34,7 @@
                 <td>${food.userID}</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/app/admin/makefoodpublic" method="post">
-                        <button type="submit" name="foodID" value="${food.id}">
+                        <button type="submit" class="custom_submit" name="foodID" value="${food.id}">
                             <fmt:message key="food.make.public"/>
                         </button>
                     </form>

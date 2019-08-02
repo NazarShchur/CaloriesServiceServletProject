@@ -14,7 +14,7 @@
     <jsp:include page="../jsp/parts/headerForLogged.jsp"/>
 </c:if>
 <div class="container wrapp">
-    <div class="row">
+    <div class="row text-center">
         <jsp:doBody/>
     </div>
 </div>

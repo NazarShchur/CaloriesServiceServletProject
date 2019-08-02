@@ -7,7 +7,7 @@
 <%@taglib prefix="w" tagdir="/WEB-INF/tags" %>
 
 <w:wrapper>
-    <div class="col-lg-12">
+    <div class="col-lg-12 text-left">
         <h1 class="uname"> <c:out value="${sessionScope.user.login}"/></h1>
         <c:if test="${sessionScope.isAdmin == true}">
             <h1>
@@ -20,10 +20,10 @@
     <div class="col-lg-5 uphoto">
 
     </div>
-    <div class="col-lg-7 ustats">
+    <div class="col-lg-7 ustats text-left">
         <ul>
             <li>
-                <fmt:message key="personal.data"/>
+                <h2><fmt:message key="personal.data"/></h2>
             </li>
             <li>
                 <fmt:message key="age"/> : <c:out value="${sessionScope.user.age}"/>
@@ -46,7 +46,7 @@
             <li>
                 <fmt:message key="today.consumed"/> : <c:out value="${sessionScope.todayEaten}"/>
                 <c:if test="${sessionScope.isNormExceeded == true}">
-                    !
+                    <span title="<fmt:message key="calories.limit.exceeded"/>" class="wow">!</span>
                 </c:if>
             </li>
         </ul>

@@ -29,7 +29,7 @@
                 <input type="password" name="password">
             </div>
         </label>
-        <label class="col-lg-12">
+        <label class="col-lg-8">
             <input type="submit" value="<fmt:message key="log.in"/>">
         </label>
     </form>

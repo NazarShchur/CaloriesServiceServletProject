@@ -10,7 +10,6 @@ import com.nazar.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 
 public class UserPageCommand implements Command {
-    private final String USER = "user";
     private final String TODAY_EATEN = "todayEaten";
     private final String IS_ADMIN = "isAdmin";
     private final String IS_NORM_EXCEEDED = "isNormExceeded";

@@ -9,6 +9,7 @@ import com.nazar.service.MealService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class SaveMealCommand implements Command {
     private final String CURRENT_MAP = "currentMap";
@@ -23,9 +24,13 @@ public class SaveMealCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        FoodCountMapDTO currentMap = (FoodCountMapDTO)request.getSession().getAttribute(CURRENT_MAP);
+        FoodCountMapDTO currentMap = Optional.ofNullable((FoodCountMapDTO)request.getSession().getAttribute(CURRENT_MAP))
+                .orElse(new FoodCountMapDTO());
         String description = request.getParameter(DESCRIPTION);
         User currentUser = (User)request.getSession().getAttribute(USER);
+        if (currentMap.getMap().size() == 0){
+            return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.NEW_MEAL + NO_FOOD_ADDED;
+        }
             mealService.saveNewMeal(Meal.builder()
                     .description(description)
                     .foodMap(currentMap.getMap())

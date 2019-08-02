@@ -9,8 +9,7 @@ import com.nazar.service.FoodService;
 import javax.servlet.http.HttpServletRequest;
 
 public class DeleteFoodFromMealCommand implements Command {
-    private final String CURRENT_MAP = "currentMap";
-    private final String FOOD_ID_TO_DELETE = "foodIDToDelete";
+
 
     private FoodService foodService;
 
@@ -19,11 +18,7 @@ public class DeleteFoodFromMealCommand implements Command {
     }
     @Override
     public String execute(HttpServletRequest request){
-        FoodCountMapDTO currentMap = (FoodCountMapDTO)request.getSession().getAttribute(CURRENT_MAP);
-        Food foodToDeleteFromMeal = foodService.findByID(Integer.parseInt(request.getParameter(FOOD_ID_TO_DELETE)));
-        currentMap.getMap().remove(foodToDeleteFromMeal);
-        foodService.countAllCalories(currentMap);
-        request.getSession().setAttribute(CURRENT_MAP, currentMap);
+        foodService.deleteFoodFromCart(request);
         return PageRoutes.REDIRECT + request.getServletPath() + PageRoutes.NEW_MEAL;
     }
 }

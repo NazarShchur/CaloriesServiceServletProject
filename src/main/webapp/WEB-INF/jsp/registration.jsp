@@ -88,6 +88,6 @@
                 </select>
             </div>
         </label>
-        <label class="col-lg-12"><input type="submit" value="<fmt:message key="register"/>"></label>
+        <label class="col-lg-8"><input type="submit" value="<fmt:message key="register"/>"></label>
     </form>
 </w:wrapper>
