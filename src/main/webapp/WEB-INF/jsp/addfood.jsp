@@ -13,21 +13,23 @@
     <c:if test="${param.unacceptableData == true}">
         <p><fmt:message key="unacceptableData"/></p>
     </c:if>
-    <form class="col-lg-12" method="post" action="${pageContext.request.contextPath}/app/userpage/addfood/savefood">
+    <form class="col-lg-12 addfood_f" method="post" action="${pageContext.request.contextPath}/app/userpage/addfood/savefood">
        <label>
            <input type="text" maxlength="30" placeholder="<fmt:message key="food.name"/>" name="foodName" required>
-       </label>
+       </label><br>
         <label>
             <input type="number" placeholder="<fmt:message key="food.proteins"/>" name="protein" required>
-        </label>
+        </label><br>
         <label>
             <input type="number" placeholder="<fmt:message key="food.fats"/>" name="fats" required>
-        </label>
+        </label><br>
         <label>
             <input type="number" placeholder="<fmt:message key="food.carbohydrates"/>" name="carbohydrate" required>
-        </label>
+        </label><br>
         <label>
-            <input class="custom_submit" type="submit" value="<fmt:message key="add"/>">
+            <button class="custom_submit" type="submit">
+                <fmt:message key="add"/>
+            </button>
         </label>
     </form>
 </w:wrapper>

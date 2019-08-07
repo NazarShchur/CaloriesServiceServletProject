@@ -34,10 +34,10 @@ public class AuthFilter implements Filter {
                         .build());
         logger.debug("User got from session " + user);
         if (SecurityService.hasPermission(req, user)) {
-            logger.debug("User " + user.getId() + "has permission");
+            logger.debug("User " + user.getId() + " has permission");
             chain.doFilter(request, response);
         } else {
-            logger.debug("User " + user.getId() + "does not have permission");
+            logger.debug("User " + user.getId() + " does not have permission");
             resp.sendRedirect(req.getServletPath() + PageRoutes.MAIN);
         }
     }

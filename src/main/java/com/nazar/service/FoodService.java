@@ -108,7 +108,7 @@ public class FoodService {
     public void deleteFoodFromCart(HttpServletRequest request){
         FoodCountMapDTO currentMap = (FoodCountMapDTO)request.getSession().getAttribute(CURRENT_MAP);
         Food foodToDeleteFromMeal = findByID(Integer.parseInt(request.getParameter(FOOD_ID_TO_DELETE)));
-        currentMap.getMap().remove(foodToDeleteFromMeal);
+        currentMap.getMap().keySet().remove(foodToDeleteFromMeal);
         updateFoodCart(request, currentMap);
     }
 

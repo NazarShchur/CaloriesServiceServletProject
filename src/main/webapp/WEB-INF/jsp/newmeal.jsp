@@ -20,7 +20,7 @@
                     <option value="${food.id}">${food.name}</option>
                 </c:forEach>
             </select>
-            <input name="count" type="number" required><br>
+            <input name="count" type="number" min="1" max="10000" required><br>
             <input type="submit" class="custom_submit" value="<fmt:message key="add"/>">
         </form>
     </div>

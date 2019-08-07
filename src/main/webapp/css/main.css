@@ -144,6 +144,7 @@ input[type = number] {
 .mealtable {
     margin: auto;
     margin-bottom: 50px;
+    width: 100%;
 }
 
 .mealtable td {
@@ -188,8 +189,9 @@ input[type = number] {
 }
 
 .custom_submit {
-    padding: 5px 10px 5px 10px;
+    padding: 7px 10px 7px 10px;
     background-color: rgba(200, 255, 245, 0.95);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 td {
@@ -214,7 +216,21 @@ td {
     width: 100%;
 }
 .main_info{
+    margin-top: 40px;
     margin-bottom: 40px;
+    padding-bottom: 40px;
+}
+.addfood_f input{
+    padding: 5px 10px 5px 10px;
+    width: 100%;
+}
+.addfood_f label{
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.addfood_f button{
+    width: 50%;
 }
 
 @keyframes spark {

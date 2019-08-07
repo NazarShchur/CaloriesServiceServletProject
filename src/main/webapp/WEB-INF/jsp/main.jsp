@@ -12,24 +12,20 @@
         <img src="../../img/img1.png" alt="img1"><br>
         <img src="../../img/img2.png" alt="img2">
     </div>
-    <div class="col-lg-6 text-left border-bottom">
-        <h3>Lorem Ipsum</h3>
+    <div class="col-lg-6 text-left main_info border-bottom">
+        <h3><fmt:message key="main.info.1"/></h3>
     </div>
     <div class="col-lg-6 text-center main_info border-bottom">
         <img src="../../img/img3.png" alt="img3"><br>
     </div>
-    <div class="col-lg-6 text-left border-bottom">
-        <h3>Lorem Ipsum</h3>
+    <div class="col-lg-6 text-left main_info border-bottom">
+        <h3><fmt:message key="main.info.2"/></h3>
     </div>
     <div class="col-lg-6 text-center main_info ">
         <img src="../../img/img4.png" alt="img4"><br>
         <img src="../../img/img5.png" alt="img5">
     </div>
-    <div class="col-lg-6 text-left ">
-        <h3>Lorem Ipsum</h3>
+    <div class="col-lg-6 text-left main_info">
+        <h3><fmt:message key="main.info.3"/> </h3>
     </div>
-
-
-<a href="${pageContext.request.contextPath}/app/registration"><fmt:message key="registration"/></a>
-<a href="${pageContext.request.contextPath}/app/login"><fmt:message key="log.in"/></a>
 </w:wrapper>
